@@ -13,7 +13,7 @@ def route():
     return 'working'
 
 #add patient information
-@app.route('/patient/addPatient', methods=['POST'])
+@app.route('/addPatient', methods=['POST'])
 def addPatient():
     data = request.get_json()
     patient = Patient(name=data['name'], email=data['email'], last_updated=datetime.utcnow())
@@ -22,7 +22,7 @@ def addPatient():
     return jsonify("User added")
 
 #add perscriber information
-@app.route('/prescriber/addPrescriber', methods=['POST'])
+@app.route('/addPrescriber', methods=['POST'])
 def addPrescriber():
     data = request.get_json()
     print(data)
@@ -32,7 +32,7 @@ def addPrescriber():
     return jsonify("Prescriber added")
 
 #add perscription
-@app.route('/prescription/addPrescription', methods=['POST'])
+@app.route('/addPrescription', methods=['POST'])
 def addPersrciption():
     id = request.headers.get('id')
     data = request.get_json()
@@ -63,7 +63,7 @@ def list():
     return jsonify({"patients": patient_schema.dump(patients), "prescribers": prescriber_schema.dump(prescriber), "prescriptions": prescription_schema.dump(prescriptions)})
 
 #provide a list of all prescriptions, calling medicine data from fdaapi
-@app.route('/prescription/listPrescriptions', methods=['GET'])
+@app.route('/listPrescriptions', methods=['GET'])
 def listprescriptions():
     prescriptions = prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
