@@ -10,7 +10,7 @@ from fdaapi import getMedicationData
 # heroku server check
 @app.route('/', methods=['GET'])
 def route():
-    return 'working'
+    return jsonify("Server running"), 200
 
 #add patient information
 @app.route('/addPatient', methods=['POST'])
@@ -19,7 +19,7 @@ def addPatient():
     patient = Patient(name=data['name'], email=data['email'], last_updated=datetime.utcnow())
     db.session.add(patient)
     db.session.commit()
-    return jsonify("User added")
+    return jsonify("User added"), 200
 
 #add perscriber information
 @app.route('/addPrescriber', methods=['POST'])
@@ -29,7 +29,7 @@ def addPrescriber():
     prescriber = Prescriber(name=data['name'], email=data['email'], position=data['position'], last_updated=datetime.utcnow())
     db.session.add(prescriber)
     db.session.commit()
-    return jsonify("Prescriber added")
+    return jsonify("Prescriber added"), 200
 
 #add perscription
 @app.route('/addPrescription', methods=['POST'])
@@ -48,7 +48,7 @@ def addPersrciption():
             listMeds.append(Medication(product_ndc=medication['product_ndc'], dose=medication['dose'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], prescription=script))
     db.session.add_all(listMeds)
     db.session.commit()
-    return "Prescription Added"
+    return jsonify("Prescription Added"), 200
 
 # this is just a route so we can see the data
 @app.route('/list', methods=['GET'])
@@ -82,5 +82,5 @@ def listprescriptions():
             else:
                 return med_data
             
-    return ser_prescriptions
+    return jsonify(ser_prescriptions), 200
 
