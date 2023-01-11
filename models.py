@@ -4,13 +4,13 @@ from marshmallow import fields
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
-    email = db.Column(db.String(100), unique=True,)
+    email = db.Column(db.String(100), unique=True)
     last_updated = db.Column(db.Date, nullable=False)
 
 class Prescriber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(100), unique=True,)
+    email = db.Column(db.String(100), unique=True)
     position = db.Column(db.String(255), nullable=False)
     last_updated = db.Column(db.Date, nullable=False)
     

@@ -21,6 +21,7 @@ docs/_build/
 .vscode
 drug-ndc-0001-of-0001.json
 __pycache__
+instance/
 
 # Coverage reports
 htmlcov/
