@@ -1,4 +1,5 @@
 
+
 .DS_Store
 .env
 .flaskenv
@@ -26,3 +27,7 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+
+venv
+drug-ndc-0001-of-0001.json
+
