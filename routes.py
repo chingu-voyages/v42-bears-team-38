@@ -16,7 +16,7 @@ def route():
 @app.route('/addPatient', methods=['POST'])
 def addPatient():
     data = request.get_json()
-    patient = Patient(name=data['name'], email=data['email'], last_updated=datetime.utcnow())
+    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['first_name'], last_name=data['last_name'], gender=data['gender'], city=data['city'], email=data['email'], last_updated=datetime.utcnow())
     db.session.add(patient)
     db.session.commit()
     return jsonify("User added"), 200
@@ -25,8 +25,7 @@ def addPatient():
 @app.route('/addPrescriber', methods=['POST'])
 def addPrescriber():
     data = request.get_json()
-    print(data)
-    prescriber = Prescriber(name=data['name'], email=data['email'], position=data['position'], last_updated=datetime.utcnow())
+    prescriber = Prescriber(prefix=data['prefix'], first_name=data['first_name'], last_name=data['last_name'], email=data['email'], position=data['position'], last_updated=datetime.utcnow())
     db.session.add(prescriber)
     db.session.commit()
     return jsonify("Prescriber added"), 200
@@ -66,12 +65,8 @@ def list():
 @app.route('/listPrescriptions', methods=['GET'])
 def listprescriptions():
     prescriptions = Prescription.query.all()
-
     prescription_schema = PrescriptionSchema(many=True)
-
     ser_prescriptions = prescription_schema.dump(prescriptions)
-    print(ser_prescriptions)
-
     for prescription in ser_prescriptions:
         medications = prescription['medications']
         for medication in medications:
