@@ -65,10 +65,12 @@ def list():
 #provide a list of all prescriptions, calling medicine data from fdaapi
 @app.route('/listPrescriptions', methods=['GET'])
 def listprescriptions():
-    prescriptions = prescription.query.all()
+    prescriptions = Prescription.query.all()
+
     prescription_schema = PrescriptionSchema(many=True)
 
     ser_prescriptions = prescription_schema.dump(prescriptions)
+    print(ser_prescriptions)
 
     for prescription in ser_prescriptions:
         medications = prescription['medications']
