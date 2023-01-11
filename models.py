@@ -3,13 +3,20 @@ from marshmallow import fields
 
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150), nullable=False)
+    prefix = db.Column(db.String(30), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    dob = db.Column(db.Date, nullable=False)
+    gender = db.Column(db.String(50), nullable=False)
+    city = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(100), unique=True)
     last_updated = db.Column(db.Date, nullable=False)
 
 class Prescriber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
+    prefix = db.Column(db.String(30), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True)
     position = db.Column(db.String(255), nullable=False)
     last_updated = db.Column(db.Date, nullable=False)
@@ -39,7 +46,11 @@ class PatientSchema(ma.SQLAlchemySchema):
         model = Patient
 
     id = ma.auto_field()
-    name = ma.auto_field()
+    prefix = ma.auto_field()
+    first_name = ma.auto_field()
+    last_name = ma.auto_field()
+    dob = ma.auto_field()
+    gender = ma.auto_field()
     email = ma.auto_field()
     last_updated = ma.auto_field()
 
@@ -48,7 +59,9 @@ class PrescriberSchema(ma.SQLAlchemySchema):
         model = Prescriber
 
     id = ma.auto_field()
-    name = ma.auto_field()
+    prefix = ma.auto_field()
+    first_name = ma.auto_field()
+    last_name = ma.auto_field()
     email = ma.auto_field()
     position = ma.auto_field()
     last_updated = ma.auto_field()
