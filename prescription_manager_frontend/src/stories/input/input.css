@@ -1,0 +1,31 @@
+.storybook-input {
+	font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	border: 1px solid #0081b4;
+	border-radius: 10px;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 1;
+}
+
+.storybook-input--primary {
+	color: rgb(0, 0, 0);
+	background-color: #eeeeee;
+}
+.storybook-input--secondary {
+	color: #0081b4;
+	background-color: transparent;
+	box-shadow: #0081b4 0px 0px 0px 1px inset;
+}
+.storybook-input--small {
+	font-size: 12px;
+	padding: 10px 16px;
+}
+.storybook-input--medium {
+	font-size: 14px;
+	padding: 11px 20px;
+}
+.storybook-input--large {
+	font-size: 16px;
+	padding: 12px 24px;
+}
