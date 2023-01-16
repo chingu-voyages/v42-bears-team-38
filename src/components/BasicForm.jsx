@@ -17,7 +17,7 @@ Include
 - Substitutions boolean
 */
 
-export default function MyForm() {
+export default function MyForm({ initialValues }) {
   const FieldState = () => {
     const { values } = useArrayFieldItemState();
     return (
@@ -28,7 +28,7 @@ export default function MyForm() {
   };
 
   return (
-    <Form onSubmit={onSubmit} autocomplete="off" style={{width: '50%', margin: '0 auto'}}>
+    <Form onSubmit={onSubmit} autocomplete="off" style={{width: '50%', margin: '0 auto'}} initialValues={initialValues}>
       <Input name='prescriptionDate' label='Prescription date' />
 
       <ArrayField name='medications'>
