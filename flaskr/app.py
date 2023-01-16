@@ -10,6 +10,6 @@ app.config["DEBUG"] = True
 db.init_app(app)
 ma = Marshmallow(app)
 
-from flaskr.models import *
+from models import *
 
-from flaskr.routes import *
+from routes import *
