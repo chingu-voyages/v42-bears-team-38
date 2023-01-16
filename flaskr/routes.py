@@ -1,6 +1,6 @@
 from app import app, db
 from flask import jsonify, request
-from models import Patient, PatientSchema, Prescriber, PrescriberSchema, Prescription, PrescriptionSchema, Medication, MedicationSchema
+from flaskr.models import Patient, PatientSchema, Prescriber, PrescriberSchema, Prescription, PrescriptionSchema, Medication, MedicationSchema
 from datetime import datetime, date
 
 import ssl
