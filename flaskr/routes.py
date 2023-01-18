@@ -42,7 +42,7 @@ def addPrescriber():
 #add perscription
 @app.route('/addPrescription', methods=['POST'])
 @cross_origin()
-def addPersrciption():
+def addPresrciption():
     id = request.headers.get('id')
     data = request.get_json()
     medications = data['medication']

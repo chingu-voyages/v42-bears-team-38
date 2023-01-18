@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { Header } from './header/Header';
 import './page.css';
 
-import { useGetListDataQuery } from '../utils/service/prescription';
 import { useDispatch } from 'react-redux';
 import { logout } from '../utils/store/Auth/authSlice';
 
