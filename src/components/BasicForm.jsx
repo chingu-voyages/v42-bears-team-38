@@ -81,4 +81,4 @@ export default function MyForm({ initialValues }) {
       <Debug values />
     </Form>
   );
-};
+}
