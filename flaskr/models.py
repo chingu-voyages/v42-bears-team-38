@@ -32,7 +32,7 @@ class Prescriber(db.Model):
 class Prescription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'))
-    patient = db.relationship('Patient', backref='perscription')
+    patient = db.relationship('Patient', backref='prescription')
     date = db.Column(db.Date, nullable=False)
     prescriber_id = db.Column(db.Integer, db.ForeignKey('prescriber.id'))
     prescriber = db.relationship('Prescriber', backref="prescription")
@@ -47,7 +47,7 @@ class Medication(db.Model):
     duration = db.Column(db.Integer)
     repeat = db.Column(db.Boolean, default=False, nullable=False)
     repeat_review_date = db.Column(db.Date, nullable=True)
-    perscription_id = db.Column(db.Integer, db.ForeignKey('prescription.id'))
+    prescription_id = db.Column(db.Integer, db.ForeignKey('prescription.id'))
 
 class UserSchema(ma.SQLAlchemySchema):
     class Meta:
@@ -97,7 +97,7 @@ class MedicationSchema(ma.SQLAlchemySchema):
     frequency = ma.auto_field()
     route = ma.auto_field()
     duration = ma.auto_field()
-    perscription_id = ma.auto_field()
+    prescription_id = ma.auto_field()
     repeat = ma.auto_field()
     repeat_review_date = ma.auto_field()
 

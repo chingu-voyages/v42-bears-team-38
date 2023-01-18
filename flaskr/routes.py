@@ -39,7 +39,7 @@ def addPrescriber():
     db.session.commit()
     return jsonify("Prescriber added"), 200
 
-#add perscription
+#add prescription
 @app.route('/addPrescription', methods=['POST'])
 @cross_origin()
 def addPresrciption():
