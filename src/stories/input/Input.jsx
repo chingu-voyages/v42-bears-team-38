@@ -5,19 +5,37 @@ import './input.css';
 /**
  * Primary UI component for user interaction
  */
-export const Input = ({ primary, backgroundColor, size, label, ...props }) => {
+export const Input = ({
+	primary,
+	backgroundColor,
+	size,
+	type,
+	icon,
+	value,
+	onChange,
+	label,
+	...props
+}) => {
 	const mode = primary
 		? 'storybook-input--primary'
 		: 'storybook-input--secondary';
 	return (
-		<input
-			type='text'
-			className={['storybook-input', `storybook-input--${size}`, mode].join(
-				' '
-			)}
-			style={backgroundColor && { backgroundColor }}
-			{...props}
-		></input>
+		<div>
+			{label && <p className='storybook-input-label'>{label}</p>}
+			<div className='storybook-input-container'>
+				{icon && <div className='storybook-input-icon'>{icon}</div>}
+				<input
+					type={type}
+					className={['storybook-input', `storybook-input--${size}`, mode].join(
+						' '
+					)}
+					style={backgroundColor && { backgroundColor }}
+					onChange={e => onChange(e.target.value)}
+					value={value}
+					{...props}
+				></input>
+			</div>
+		</div>
 	);
 };
 
@@ -37,7 +55,7 @@ Input.propTypes = {
 	/**
 	 * Button contents
 	 */
-	label: PropTypes.string.isRequired,
+	label: PropTypes.string,
 	/**
 	 * Optional click handler
 	 */
@@ -49,4 +67,5 @@ Input.defaultProps = {
 	primary: true,
 	size: 'medium',
 	onClick: undefined,
+	type: 'text',
 };

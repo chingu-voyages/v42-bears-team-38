@@ -16,6 +16,7 @@ export const Button = ({
 	const mode = primary
 		? 'storybook-button--primary'
 		: 'storybook-button--secondary';
+
 	return (
 		<button
 			type='button'
@@ -26,7 +27,6 @@ export const Button = ({
 			{...props}
 		>
 			{label}
-
 			{icon && <div className='storybook-button--icon'>{icon}</div>}
 		</button>
 	);

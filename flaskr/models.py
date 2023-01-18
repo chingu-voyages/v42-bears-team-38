@@ -1,6 +1,14 @@
 from app import db, ma, app
 from marshmallow import fields
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    public_id = db.Column(db.String(50))
+    name = db.Column(db.String(50))
+    password = db.Column(db.String(50))
+    email = db.Column(db.String(100), unique=True)
+    admin = db.Column(db.Boolean)
+
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     prefix = db.Column(db.String(30), nullable=False)
@@ -40,6 +48,17 @@ class Medication(db.Model):
     repeat = db.Column(db.Boolean, default=False, nullable=False)
     repeat_review_date = db.Column(db.Date, nullable=True)
     perscription_id = db.Column(db.Integer, db.ForeignKey('prescription.id'))
+
+class UserSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = User
+
+    id = ma.auto_field()
+    public_id = ma.auto_field()
+    name = ma.auto_field()
+    password = ma.auto_field()
+    email = ma.auto_field()
+    admin = ma.auto_field()
 
 class PatientSchema(ma.SQLAlchemySchema):
     class Meta:

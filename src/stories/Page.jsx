@@ -1,20 +1,26 @@
-import React, { useContext } from 'react';
-import { DataContext } from '../utils/DataContext';
+import { Outlet } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 
 import { Header } from './header/Header';
 import './page.css';
 
+import { useGetListDataQuery } from '../utils/service/prescription';
+import { useDispatch } from 'react-redux';
+import { logout } from '../utils/store/Auth/authSlice';
+
 export const Page = ({ children }) => {
-	const { dispatch } = useContext(DataContext);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const handleLogout = () => {
+		dispatch(logout());
+	};
 
 	return (
 		<div>
-			<Header
-				onLogin={() => dispatch({ type: 'login' })}
-				onLogout={() => dispatch({ type: 'logout' })}
-				onCreateAccount={() => setUser({ name: 'Jane Doe' })}
-			/>
-			{children}
+			<Header onLogin={() => navigate('/login')} onLogout={handleLogout} />
+			<Outlet />
 		</div>
 	);
 };

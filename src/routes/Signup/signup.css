@@ -1,0 +1,16 @@
+.input-container {
+	padding: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.input-wrapper {
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaEnvelope } from 'react-icons/fa';
 
 import { Input } from './Input';
 
@@ -20,21 +21,25 @@ export const Primary = Template.bind({});
 Primary.args = {
 	primary: true,
 	label: 'Input',
+	icon: <FaEnvelope />,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
 	label: 'Input',
+	icon: <FaEnvelope />,
 };
 
 export const Large = Template.bind({});
 Large.args = {
 	size: 'large',
 	label: 'Input',
+	icon: <FaEnvelope />,
 };
 
 export const Small = Template.bind({});
 Small.args = {
 	size: 'small',
 	label: 'Input',
+	icon: <FaEnvelope />,
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import { within, userEvent } from '@storybook/testing-library';
 
 import { Page } from './Page';
-import DataReducers from '../utils/DataReducers';
 
 export default {
 	title: 'Example/Page',
@@ -17,13 +16,7 @@ const Template = args => <Page {...args} />;
 
 // More on interaction testing: https://storybook.js.org/docs/react/writing-tests/interaction-testing
 export const LoggedOut = Template.bind({});
-LoggedOut.decorators = [
-	Story => (
-		<DataReducers>
-			<Story />
-		</DataReducers>
-	),
-];
+LoggedOut.decorators = [Story => <Story />];
 
 export const LoggedIn = Template.bind({});
 LoggedIn.play = async ({ canvasElement }) => {
@@ -31,10 +24,4 @@ LoggedIn.play = async ({ canvasElement }) => {
 	const loginButton = await canvas.getByRole('button', { name: /Log in/i });
 	await userEvent.click(loginButton);
 };
-LoggedIn.decorators = [
-	Story => (
-		<DataReducers>
-			<Story />
-		</DataReducers>
-	),
-];
+LoggedIn.decorators = [Story => <Story />];

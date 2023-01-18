@@ -1,14 +1,26 @@
-import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useGetUserDetailsQuery } from '../../utils/service/authService';
+import { setCredentials } from '../../utils/store/Auth/authSlice';
 
 import { Button } from '../button/Button';
 import './header.css';
-import { DataContext } from '../../utils/DataContext';
 
-export const Header = ({ onLogin, onLogout, onCreateAccount }) => {
-	const {
-		state: { user },
-	} = useContext(DataContext);
+export const Header = ({ onLogin, onLogout }) => {
+	const navigate = useNavigate();
+	const { userInfo } = useSelector(state => state.auth);
+	const dispatch = useDispatch();
+
+	const { data, isFetching } = useGetUserDetailsQuery('userDetails', {
+		// perform a refetch every 15mins
+		pollingInterval: 900000,
+	});
+
+	useEffect(() => {
+		if (data) dispatch(setCredentials(data));
+	}, [data, dispatch]);
 
 	return (
 		<header>
@@ -16,11 +28,11 @@ export const Header = ({ onLogin, onLogout, onCreateAccount }) => {
 				<div>
 					<h1 className='logo'>Prescription Manager</h1>
 				</div>
-				<div>
-					{user ? (
+				<div className='login'>
+					{userInfo ? (
 						<>
 							<span className='welcome'>
-								Welcome, <b>{user.name}</b>!
+								Welcome, <b>{userInfo.name}</b>!
 							</span>
 							<Button size='small' onClick={onLogout} label='Log out' />
 						</>
@@ -30,7 +42,7 @@ export const Header = ({ onLogin, onLogout, onCreateAccount }) => {
 							<Button
 								primary
 								size='small'
-								onClick={onCreateAccount}
+								onClick={() => navigate('/signup')}
 								label='Sign up'
 							/>
 						</>
@@ -42,12 +54,8 @@ export const Header = ({ onLogin, onLogout, onCreateAccount }) => {
 };
 
 Header.propTypes = {
-	user: PropTypes.shape({}),
 	onLogin: PropTypes.func.isRequired,
 	onLogout: PropTypes.func.isRequired,
-	onCreateAccount: PropTypes.func.isRequired,
 };
 
-Header.defaultProps = {
-	user: { name: 'david' },
-};
+Header.defaultProps = {};

@@ -1,5 +1,4 @@
 import React from 'react';
-import DataReducers from '../../utils/DataReducers';
 import { Header } from './Header';
 
 export default {
@@ -19,20 +18,8 @@ LoggedIn.args = {
 		name: 'Jane Doe',
 	},
 };
-LoggedIn.decorators = [
-	Story => (
-		<DataReducers>
-			<Story />
-		</DataReducers>
-	),
-];
+LoggedIn.decorators = [Story => <Story />];
 
 export const LoggedOut = Template.bind({});
 LoggedOut.args = {};
-LoggedOut.decorators = [
-	Story => (
-		<DataReducers>
-			<Story />
-		</DataReducers>
-	),
-];
+LoggedOut.decorators = [Story => <Story />];

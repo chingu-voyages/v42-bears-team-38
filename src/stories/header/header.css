@@ -36,3 +36,11 @@ button + button {
 	font-size: 14px;
 	margin-right: 10px;
 }
+
+.login {
+	display: flex;
+	flex-direction: row;
+	justify-items: center;
+	justify-content: center;
+	align-items: center;
+}

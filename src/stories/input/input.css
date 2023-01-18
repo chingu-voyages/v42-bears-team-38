@@ -7,6 +7,16 @@
 	display: inline-block;
 	line-height: 1;
 }
+.storybook-input-container {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+
+.storybook-input-icon {
+	margin-right: 10px;
+	margin-left: 10px;
+}
 
 .storybook-input--primary {
 	color: rgb(0, 0, 0);
@@ -28,4 +38,8 @@
 .storybook-input--large {
 	font-size: 16px;
 	padding: 12px 24px;
+}
+
+.storybook-input-label {
+	font-size: 10px;
 }
