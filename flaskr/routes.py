@@ -24,10 +24,19 @@ def route():
 @cross_origin()
 def addPatient():
     data = request.get_json()
-    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['first_name'], last_name=data['last_name'], gender=data['gender'], city=data['city'], email=data['email'], last_updated=datetime.utcnow())
+    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['firstName'], last_name=data['lastName'], gender=data['gender'], city=data['city'], email=data['email'], last_updated=datetime.utcnow())
     db.session.add(patient)
     db.session.commit()
     return jsonify("User added"), 200
+
+#add patient information
+@app.route('/searchPatient', methods=['POST'])
+@cross_origin()
+def searchPatient():
+    search_email = request.get_json()
+    user_schema = UserSchema()
+    user = User.query.filter_by(email=search_email).first()  
+    return jsonify(user_schema.dump(user)), 200
 
 #add perscriber information
 @app.route('/addPrescriber', methods=['POST'])

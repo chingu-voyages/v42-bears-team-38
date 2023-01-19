@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { prescriptionApi } from '../service/prescription';
+
 import authReducer from './Auth/authSlice';
 import { authApi } from '../service/authService';
+import { prescriptionApi } from '../service/prescriptionService';
 
 export const store = configureStore({
 	reducer: {

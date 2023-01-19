@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const backendURL = 'http://127.0.0.1:5000';
+export const backendURL = 'http://127.0.0.1:5000';
 
 export const registerUser = createAsyncThunk(
 	'auth/register',
@@ -18,7 +18,6 @@ export const registerUser = createAsyncThunk(
 				{ name, email, password },
 				config
 			);
-			
 		} catch (error) {
 			// return custom error message from backend if present
 			if (error.response && error.response.data.message) {
