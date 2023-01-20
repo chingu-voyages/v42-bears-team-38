@@ -16,7 +16,6 @@ from fdaapi import getMedicationData
 @app.route('/', methods=['GET'])
 def route():
     response = jsonify({"order_id": 123, "status": "shipped"})
-    response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
 #add patient information
@@ -32,7 +31,8 @@ def addPatient():
 #add patient information
 @app.route('/searchPatient', methods=['POST'])
 @cross_origin()
-def searchPatient():
+@token_required
+def searchPatient(current_user):
     search_email = request.get_json()
     user_schema = UserSchema()
     user = User.query.filter_by(email=search_email).first()  
@@ -41,7 +41,8 @@ def searchPatient():
 #add perscriber information
 @app.route('/addPrescriber', methods=['POST'])
 @cross_origin()
-def addPrescriber():
+@token_required
+def addPrescriber(current_user):
     data = request.get_json()
     prescriber = Prescriber(prefix=data['prefix'], first_name=data['first_name'], last_name=data['last_name'], email=data['email'], position=data['position'], last_updated=datetime.utcnow())
     db.session.add(prescriber)
@@ -115,9 +116,10 @@ def signup_user():
 @cross_origin()
 def login_user():
     auth = request.authorization
+    # print(auth.password)
     if not auth or not auth.username or not auth.password:
         return make_response('could not verify', 401, {'Authentication': 'login required"'})   
-    user = User.query.filter_by(email=auth.username).first()  
+    user = User.query.filter_by(email=auth.username).first()
     if check_password_hash(user.password, auth.password):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=90)}, app.config['SECRET_KEY'], "HS256")
         return jsonify({'token' : token, 'userInfo': {'id': user.public_id, 'admin': user.admin, 'name': user.name, 'email': user.email}}), 200

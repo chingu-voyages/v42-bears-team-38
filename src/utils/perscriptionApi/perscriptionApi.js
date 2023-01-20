@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { backendURL } from '../store/Auth/authActions';
 
+export const setHeader = () => {
+	axios.defaults.headers.post['Authorization'] = `Bearer ${localStorage.getItem(
+		'token'
+	)}`;
+};
+
 export const addPatient = async patientData => {
 	try {
 		// configure header's Content-Type as JSON

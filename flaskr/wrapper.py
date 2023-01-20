@@ -9,6 +9,7 @@ def token_required(f):
     def decorator(*args, **kwargs):
         auth_header = request.headers.get('Authorization')
         token = None
+        
         if auth_header:
             token = auth_header.split(" ")[1]
         if not token:
@@ -16,9 +17,9 @@ def token_required(f):
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
             current_user = User.query.filter_by(public_id=data['public_id']).first()
+            print(current_user)
         except:
             return jsonify({'message': 'token is invalid'}), 401
-            
         return f(current_user, *args, **kwargs)
     return decorator
 

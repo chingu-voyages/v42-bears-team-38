@@ -25,6 +25,7 @@ h1 {
 
 .logo {
 	color: white;
+	cursor: pointer;
 }
 
 button + button {
