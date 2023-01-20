@@ -1,43 +1,43 @@
-import { AiOutlinePlusCircle, AiOutlineSearch } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
-import './home.css';
-import { Button } from '../../stories/button/Button';
-import { useNavigate } from 'react-router-dom';
+import { AiOutlinePlusCircle, AiOutlineSearch } from "react-icons/ai";
+import "./home.css";
+import { Button } from "../../stories/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	return (
-		<div>
-			<div className='input-wrapper'>
-				<div className='options-wrapper'>
-					<Button
-						label='Add Patient'
-						primary={false}
-						icon={<AiOutlinePlusCircle />}
-						onClick={() => navigate('addPatient')}
-					/>
-					<Button
-						label='Find Patient'
-						icon={<AiOutlineSearch />}
-						onClick={() => navigate('findPatient')}
-					/>
+  return (
+    <section>
+      <Button
+        label="Add Patient"
+        primary={false}
+        icon={<AiOutlinePlusCircle />}
+        onClick={() => navigate("addPatient")}
+        width={190}
+        backgroundColor="red"
+      />
+      <Button
+        label="Find Patient"
+        icon={<AiOutlineSearch />}
+        onClick={() => navigate("findPatient")}
+        width={190}
+      />
 
-					<Button
-						label='New Prescription'
-						primary={false}
-						icon={<AiOutlinePlusCircle />}
-						onClick={() => navigate('newPrescription')}
-					/>
-					<Button
-						label='Find Prescription'
-						icon={<AiOutlineSearch />}
-						onClick={() => navigate('findPrescription')}
-					/>
-				</div>
-			</div>
-		</div>
-	);
+      <Button
+        label="New Prescription"
+        primary={false}
+        icon={<AiOutlinePlusCircle />}
+        onClick={() => navigate("newPrescription")}
+        width={190}
+      />
+      <Button
+        label="Find Prescription"
+        icon={<AiOutlineSearch />}
+        onClick={() => navigate("findPrescription")}
+        width={190}
+      />
+    </section>
+  );
 };
 
 export default Home;

@@ -15,8 +15,7 @@ from fdaapi import getMedicationData
 # heroku server check
 @app.route('/', methods=['GET'])
 def route():
-    response = jsonify({"order_id": 123, "status": "shipped"})
-    return response
+    return "server running", 200
 
 #add patient information
 @app.route('/addPatient', methods=['POST'])
