@@ -8,6 +8,7 @@ django-rest-framework==0.1.0
 djangorestframework==3.14.0
 filelock==3.9.0
 Flask==2.2.2
+Flask-Cors==3.0.10
 flask-marshmallow==0.14.0
 Flask-SQLAlchemy==3.0.2
 Flask-WTF==1.0.1
@@ -22,12 +23,14 @@ packaging==22.0
 platformdirs==2.6.2
 psycopg2==2.9.5
 psycopg2-binary==2.9.5
+PyJWT==2.6.0
 python-decouple==3.6
 python-dotenv==0.21.0
 pytz==2022.7
 six==1.16.0
 SQLAlchemy==1.4.46
 sqlparse==0.4.3
+uuid==1.30
 virtualenv==20.17.1
 Werkzeug==2.2.2
 WTForms==3.0.1

@@ -1,7 +1,12 @@
 from app import app, db
-from flask import jsonify, request
-from models import Patient, PatientSchema, Prescriber, PrescriberSchema, Prescription, PrescriptionSchema, Medication, MedicationSchema
-from datetime import datetime, date
+from flask import jsonify, request, make_response
+from models import Patient, PatientSchema, Prescriber, PrescriberSchema, Prescription, PrescriptionSchema, Medication, User, UserSchema
+from datetime import datetime, date, timedelta
+from werkzeug.security import generate_password_hash, check_password_hash
+from uuid import uuid4
+import jwt
+from flask_cors import cross_origin
+from wrapper import token_required
 
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -10,29 +15,43 @@ from fdaapi import getMedicationData
 # heroku server check
 @app.route('/', methods=['GET'])
 def route():
-    return jsonify("Server running"), 200
+    return "server running", 200
 
 #add patient information
 @app.route('/addPatient', methods=['POST'])
+@cross_origin()
 def addPatient():
     data = request.get_json()
-    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['first_name'], last_name=data['last_name'], gender=data['gender'], city=data['city'], email=data['email'], last_updated=datetime.utcnow())
+    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['firstName'], last_name=data['lastName'], gender=data['gender'], city=data['city'], email=data['email'], last_updated=datetime.utcnow())
     db.session.add(patient)
     db.session.commit()
     return jsonify("User added"), 200
 
+#add patient information
+@app.route('/searchPatient', methods=['POST'])
+@cross_origin()
+@token_required
+def searchPatient(current_user):
+    search_email = request.get_json()
+    user_schema = UserSchema()
+    user = User.query.filter_by(email=search_email).first()  
+    return jsonify(user_schema.dump(user)), 200
+
 #add perscriber information
 @app.route('/addPrescriber', methods=['POST'])
-def addPrescriber():
+@cross_origin()
+@token_required
+def addPrescriber(current_user):
     data = request.get_json()
     prescriber = Prescriber(prefix=data['prefix'], first_name=data['first_name'], last_name=data['last_name'], email=data['email'], position=data['position'], last_updated=datetime.utcnow())
     db.session.add(prescriber)
     db.session.commit()
     return jsonify("Prescriber added"), 200
 
-#add perscription
+#add prescription
 @app.route('/addPrescription', methods=['POST'])
-def addPersrciption():
+@cross_origin()
+def addPresrciption():
     id = request.headers.get('id')
     data = request.get_json()
     medications = data['medication']
@@ -58,8 +77,10 @@ def list():
     prescriber_schema = PrescriberSchema(many=True)
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
+    users = User.query.all()
+    users_schema = UserSchema(many=True)
     
-    return jsonify({"patients": patient_schema.dump(patients), "prescribers": prescriber_schema.dump(prescriber), "prescriptions": prescription_schema.dump(prescriptions)})
+    return jsonify({"patients": patient_schema.dump(patients), "prescribers": prescriber_schema.dump(prescriber), "prescriptions": prescription_schema.dump(prescriptions), "users": users_schema.dump(users)})
 
 #provide a list of all prescriptions, calling medicine data from fdaapi
 @app.route('/listPrescriptions', methods=['GET'])
@@ -79,3 +100,32 @@ def listprescriptions():
             
     return jsonify(ser_prescriptions), 200
 
+@app.route('/register', methods=['POST'])
+@cross_origin()
+def signup_user():
+    data = request.get_json()
+    hashed_password = generate_password_hash(data['password'], method='sha256')
+    new_user = User(public_id=str(uuid4()), name=data['name'], password=hashed_password, admin=False, email=data['email'])
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({'message': 'registered successfully'}), 200
+
+@app.route('/login', methods=['POST'])
+@cross_origin()
+def login_user():
+    auth = request.authorization
+    # print(auth.password)
+    if not auth or not auth.username or not auth.password:
+        return make_response('could not verify', 401, {'Authentication': 'login required"'})   
+    user = User.query.filter_by(email=auth.username).first()
+    if check_password_hash(user.password, auth.password):
+        token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=90)}, app.config['SECRET_KEY'], "HS256")
+        return jsonify({'token' : token, 'userInfo': {'id': user.public_id, 'admin': user.admin, 'name': user.name, 'email': user.email}}), 200
+    return make_response('could not verify',  401, {'Authentication': '"login required"'})
+
+@app.route('/getUser', methods=['GET'])
+@cross_origin()
+@token_required
+def get_user_data(current_user):
+    return make_response({"id": current_user.public_id, "name": current_user.name, "email": current_user.email, "admin": current_user.admin}, 200)
