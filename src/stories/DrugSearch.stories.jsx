@@ -3,20 +3,17 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-import { medSlice } from '../lib/store';
+import { initialState as medInitialState } from '../lib/store';
+import createStore from '../lib/store';
 
 import DrugSearch from '../components/DrugSearch';
 
 // TODO
 // Can't mock initialData this way, however. Need to return a fn()
 // from the store to manage setup instead.
+const store  = createStore();
 const Mockstore = ({ medState, children }) => (
-  <Provider store={configureStore(
-    {
-      reducer: {
-        medications: medSlice.reducer,
-      }
-    })}
+  <Provider store={store}
   >
     {children}
   </Provider>
@@ -32,5 +29,5 @@ export const Default = Template.bind({});
 Default.args = { debug: true };
 
 Default.decorators = [
-  (story) => <Mockstore medState={{}}>{story()}</Mockstore>,
+  (story) => <Provider store={store}>{story()}</Provider>,
 ];
