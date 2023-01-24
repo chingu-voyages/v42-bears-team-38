@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Form, Input, ArrayField, useFormApi, useArrayFieldItemState, Select, Option, Debug, useFieldState, Relevant } from 'informed';
 
-import { medicationQueried, queryApi } from '../lib/store';
+import { queryApi } from '../utils/store/medActions';
 
 const SearchCombo = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ const SearchCombo = () => {
 
   const onSearch = () => {
     const drugName = formApi.getValue('search');
-    //dispatch(medicationQueried(drugName));
     dispatch(queryApi()).then(x => console.log(x));
   };
 
@@ -32,12 +31,17 @@ const SearchCombo = () => {
 };
 
 export default function DrugSearch({ debug }) {
+  const medications = useSelector(state => state.medications.medications);
+
   return (
     <Form>
       <SearchCombo />
 
       <Relevant when={() => debug}>
         <Debug values />
+        <pre>
+          <code>{JSON.stringify(medications, null, 2)}</code>
+        </pre>
       </Relevant>
     </Form>
   );

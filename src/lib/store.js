@@ -6,39 +6,49 @@ export const initialState = {
   error: null
 }
 
+// Generic name search, which is different than the brand name search
 // https://api.fda.gov/drug/ndc.json?search=generic_name:"dicyclomine"&limit=10
 // async file load
 export const queryApi = createAsyncThunk('medications/queryApi', async () => {
-  const data  = await new Promise(function(resolved, rejected) {
+  // https://dev.to/thatamymac/dynamic-imports-of-json-ipl
+  const data = await import ('./mocks/fda-ndc-generic.json').then(module => module.default);
+  return new Promise(async function(resolve, reject) {
     setTimeout(() => {
-      resolved('test value');
+      resolve(data);
     }, 1000);
   });
-  return Promise.resolve(data);
 });
 
 export const medSlice = createSlice({
   name: 'medications',
   initialState,
-  reducers: {
-    /* no op */
-    medicationQueried: (state, action) => {
-      const { payload } = action;
-      state = payload;
-      console.log(state);
-      //const task = state.tasks.findIndex((task) => task.id === id);
-      //if (task >= 0) {
-      //  state.tasks[task].state = newTaskState;
-      //}
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(queryApi.pending, (state, action) => {
       state.status = 'loading';
     })
     .addCase(queryApi.fulfilled, (state, action) => {
+      const { results } = action.payload;
       state.status = 'succeeded';
-      state.medications = [ ...action.payload ];
+
+      const drugNames = [ ...new Set(results.map(obj => obj.generic_name.toLowerCase())) ];
+      const formAndRouteByDrugName = results.reduce((accum, drugResult) => {
+        const { generic_name: drugName, dosage_form: drugForm, route: drugRoutes } = drugResult;
+        if(!accum.hasOwnProperty(drugName.toLowerCase())) accum[drugName.toLowerCase()] = {
+          routes: [],
+          forms: []
+        };
+
+        accum[drugName.toLowerCase()].routes.push(...drugRoutes);
+        accum[drugName.toLowerCase()].forms.push(drugForm);
+
+        return accum;
+      }, {});
+
+      state.medications = {
+        drugNames,
+        formAndRouteByDrugName
+      };
     })
     .addCase(queryApi.rejected, (state, action) => {
       state.status = 'failed';
@@ -46,10 +56,6 @@ export const medSlice = createSlice({
     })
   }
 });
-
-// export const { updateTaskState } = TasksSlice.actions;
-// Probably irrelevant
-export const { medicationQueried } = medSlice.actions;
 
 export default function createStore() {
   return configureStore({

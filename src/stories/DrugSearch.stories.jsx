@@ -1,17 +1,19 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import { initialState as medInitialState } from '../lib/store';
-import createStore from '../lib/store';
+import medSliceReducer from '../utils/store/medSlice';
 
 import DrugSearch from '../components/DrugSearch';
 
-// TODO
-// Can't mock initialData this way, however. Need to return a fn()
-// from the store to manage setup instead.
-const store  = createStore();
+const store  = configureStore({
+  medInitialState,
+  reducer: {
+    medications: medSliceReducer
+  }
+});
 const Mockstore = ({ medState, children }) => (
   <Provider store={store}
   >
