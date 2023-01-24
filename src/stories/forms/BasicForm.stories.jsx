@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BasicForm from '../components/BasicForm';
+import BasicForm from '../../components/BasicForm';
 
 export default {
   component: BasicForm,
