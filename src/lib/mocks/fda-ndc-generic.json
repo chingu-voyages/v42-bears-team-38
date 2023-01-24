@@ -1,0 +1,634 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2023-01-20",
+    "results": {
+      "skip": 0,
+      "limit": 10,
+      "total": 77
+    }
+  },
+  "results": [
+    {
+      "product_ndc": "49999-081",
+      "generic_name": "Dicyclomine Hydrochloride",
+      "labeler_name": "Lake Erie Medical DBA Quality Care Products LLC",
+      "brand_name": "Dicyclomine Hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "20 mg/1"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "49999-081-30",
+          "description": "30 TABLET in 1 BOTTLE (49999-081-30)",
+          "marketing_start_date": "20111118",
+          "sample": false
+        },
+        {
+          "package_ndc": "49999-081-60",
+          "description": "60 TABLET in 1 BOTTLE (49999-081-60)",
+          "marketing_start_date": "20111118",
+          "sample": false
+        },
+        {
+          "package_ndc": "49999-081-90",
+          "description": "90 TABLET in 1 BOTTLE (49999-081-90)",
+          "marketing_start_date": "20111118",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Lake Erie Medical DBA Quality Care Products LLC"
+        ],
+        "rxcui": [
+          "991086"
+        ],
+        "spl_set_id": [
+          "ad7e6eaa-42b8-45fd-aca4-e4b64a9ef20f"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "TABLET",
+      "spl_id": "e7468956-701c-41b5-8f97-5be67f7fbb93",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "20111118",
+      "product_id": "49999-081_e7468956-701c-41b5-8f97-5be67f7fbb93",
+      "application_number": "ANDA085223",
+      "brand_name_base": "Dicyclomine Hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "51407-365",
+      "generic_name": "Dicyclomine hydrochloride",
+      "labeler_name": "Golden State Medical Supply",
+      "brand_name": "Dicyclomine hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "10 mg/1"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "51407-365-01",
+          "description": "100 CAPSULE in 1 BOTTLE, PLASTIC (51407-365-01)",
+          "marketing_start_date": "20200312",
+          "sample": false
+        },
+        {
+          "package_ndc": "51407-365-10",
+          "description": "1000 CAPSULE in 1 BOTTLE, PLASTIC (51407-365-10)",
+          "marketing_start_date": "20200312",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Golden State Medical Supply"
+        ],
+        "rxcui": [
+          "991061"
+        ],
+        "spl_set_id": [
+          "a8378c2d-420b-2b80-e053-2a95a90a7b16"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "CAPSULE",
+      "spl_id": "a837a5a3-865d-4377-e053-2995a90a59c1",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "19970228",
+      "product_id": "51407-365_a837a5a3-865d-4377-e053-2995a90a59c1",
+      "application_number": "ANDA040204",
+      "brand_name_base": "Dicyclomine hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "71335-0938",
+      "generic_name": "Dicyclomine Hydrochloride",
+      "labeler_name": "Bryant Ranch Prepack",
+      "brand_name": "Dicyclomine Hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "10 mg/1"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "71335-0938-1",
+          "description": "30 CAPSULE in 1 BOTTLE (71335-0938-1)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-2",
+          "description": "90 CAPSULE in 1 BOTTLE (71335-0938-2)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-3",
+          "description": "40 CAPSULE in 1 BOTTLE (71335-0938-3)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-4",
+          "description": "60 CAPSULE in 1 BOTTLE (71335-0938-4)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-5",
+          "description": "20 CAPSULE in 1 BOTTLE (71335-0938-5)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-6",
+          "description": "100 CAPSULE in 1 BOTTLE (71335-0938-6)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-7",
+          "description": "180 CAPSULE in 1 BOTTLE (71335-0938-7)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        },
+        {
+          "package_ndc": "71335-0938-8",
+          "description": "120 CAPSULE in 1 BOTTLE (71335-0938-8)",
+          "marketing_start_date": "20220209",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Bryant Ranch Prepack"
+        ],
+        "rxcui": [
+          "991061"
+        ],
+        "spl_set_id": [
+          "b3b8ee01-ec7c-4b17-a237-59ba45cdf3f9"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "CAPSULE",
+      "spl_id": "b749ecfa-73c5-4b52-99af-dccd39030a36",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "19860619",
+      "product_id": "71335-0938_b749ecfa-73c5-4b52-99af-dccd39030a36",
+      "application_number": "ANDA085082",
+      "brand_name_base": "Dicyclomine Hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "72888-119",
+      "generic_name": "Dicyclomine hydrochloride",
+      "labeler_name": "Advagen Pharma Ltd.,",
+      "brand_name": "Dicyclomine hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "20 mg/1"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "72888-119-00",
+          "description": "1000 TABLET in 1 BOTTLE (72888-119-00)",
+          "marketing_start_date": "20221214",
+          "sample": false
+        },
+        {
+          "package_ndc": "72888-119-01",
+          "description": "100 TABLET in 1 BOTTLE (72888-119-01)",
+          "marketing_start_date": "20221214",
+          "sample": false
+        },
+        {
+          "package_ndc": "72888-119-05",
+          "description": "500 TABLET in 1 BOTTLE (72888-119-05)",
+          "marketing_start_date": "20221214",
+          "sample": false
+        },
+        {
+          "package_ndc": "72888-119-30",
+          "description": "30 TABLET in 1 BOTTLE (72888-119-30)",
+          "marketing_start_date": "20221214",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20241231",
+      "openfda": {
+        "manufacturer_name": [
+          "Advagen Pharma Ltd.,"
+        ],
+        "spl_set_id": [
+          "b4331e24-58af-45fb-a25b-9eb8270f83f7"
+        ],
+        "is_original_packager": [
+          true
+        ],
+        "upc": [
+          "0372888119304",
+          "0372888119014",
+          "0372888119052",
+          "0372888119007"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "TABLET",
+      "spl_id": "f28714bb-3267-c227-e053-2995a90a453f",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "20221214",
+      "product_id": "72888-119_f28714bb-3267-c227-e053-2995a90a453f",
+      "application_number": "ANDA216736",
+      "brand_name_base": "Dicyclomine hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "0143-1227",
+      "generic_name": "Dicyclomine hydrochloride",
+      "labeler_name": "Hikma Pharmaceuticals USA Inc.",
+      "brand_name": "Dicyclomine",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "20 mg/1"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "0143-1227-01",
+          "description": "100 TABLET in 1 BOTTLE, PLASTIC (0143-1227-01)",
+          "marketing_start_date": "19961001",
+          "sample": false
+        },
+        {
+          "package_ndc": "0143-1227-10",
+          "description": "1000 TABLET in 1 BOTTLE, PLASTIC (0143-1227-10)",
+          "marketing_start_date": "19961001",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Hikma Pharmaceuticals USA Inc."
+        ],
+        "rxcui": [
+          "991086"
+        ],
+        "spl_set_id": [
+          "5a553bda-1e3d-4b80-913f-73dd54655033"
+        ],
+        "is_original_packager": [
+          true
+        ],
+        "upc": [
+          "0301431227012"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "TABLET",
+      "spl_id": "ab1abd30-25fd-46ed-a992-925836112c98",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "19961001",
+      "product_id": "0143-1227_ab1abd30-25fd-46ed-a992-925836112c98",
+      "application_number": "ANDA040161",
+      "brand_name_base": "Dicyclomine",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "0641-6173",
+      "generic_name": "Dicyclomine Hydrochloride",
+      "labeler_name": "Hikma Pharmaceuticals USA Inc.",
+      "brand_name": "Dicyclomine Hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "10 mg/mL"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "0641-6173-10",
+          "description": "10 VIAL, SINGLE-DOSE in 1 CARTON (0641-6173-10)  / 2 mL in 1 VIAL, SINGLE-DOSE (0641-6173-01)",
+          "marketing_start_date": "20151230",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Hikma Pharmaceuticals USA Inc."
+        ],
+        "rxcui": [
+          "991065"
+        ],
+        "spl_set_id": [
+          "26a94263-46c0-4938-849c-ffb396e48dd3"
+        ],
+        "is_original_packager": [
+          true
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "INJECTION",
+      "spl_id": "3597e798-a7ee-4823-ba11-002eb0d185d8",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "INTRAMUSCULAR"
+      ],
+      "marketing_start_date": "20151230",
+      "product_id": "0641-6173_3597e798-a7ee-4823-ba11-002eb0d185d8",
+      "application_number": "ANDA040465",
+      "brand_name_base": "Dicyclomine Hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "58914-080",
+      "generic_name": "Dicyclomine hydrochloride",
+      "labeler_name": "Allergan, Inc.",
+      "brand_name": "Bentyl",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "20 mg/2mL"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "58914-080-52",
+          "description": "5 AMPULE in 1 BOX (58914-080-52)  / 2 mL in 1 AMPULE",
+          "marketing_start_date": "19520813",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Allergan, Inc."
+        ],
+        "rxcui": [
+          "991065",
+          "991069"
+        ],
+        "spl_set_id": [
+          "c56598d5-9cd1-4cce-b172-ac338775aec7"
+        ],
+        "is_original_packager": [
+          true
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "NDA",
+      "dosage_form": "INJECTION, SOLUTION",
+      "spl_id": "ec446514-48c3-4261-bfbb-c5a71e2e8a66",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "INTRAMUSCULAR"
+      ],
+      "marketing_start_date": "19520813",
+      "product_id": "58914-080_ec446514-48c3-4261-bfbb-c5a71e2e8a66",
+      "application_number": "NDA008370",
+      "brand_name_base": "Bentyl",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "71610-265",
+      "generic_name": "Dicyclomine Hydrochloride",
+      "labeler_name": "Aphena Pharma Solutions - Tennessee, LLC",
+      "brand_name": "Dicyclomine Hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "10 mg/1"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "71610-265-09",
+          "description": "9000 CAPSULE in 1 BOTTLE (71610-265-09)",
+          "marketing_start_date": "20190425",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Aphena Pharma Solutions - Tennessee, LLC"
+        ],
+        "rxcui": [
+          "991061"
+        ],
+        "spl_set_id": [
+          "860e8ea6-6f9b-4fe6-a23d-3600b69c0b35"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "CAPSULE",
+      "spl_id": "c5c78781-b840-4c6b-ad40-968ab2ae25ad",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "19740930",
+      "product_id": "71610-265_c5c78781-b840-4c6b-ad40-968ab2ae25ad",
+      "application_number": "ANDA084285",
+      "brand_name_base": "Dicyclomine Hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "63629-2179",
+      "generic_name": "dicyclomine hydrochloride",
+      "labeler_name": "Bryant Ranch Prepack",
+      "brand_name": "dicyclomine hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "10 mg/5mL"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "63629-2179-1",
+          "description": "473 mL in 1 BOTTLE, PLASTIC (63629-2179-1)",
+          "marketing_start_date": "20210312",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Bryant Ranch Prepack"
+        ],
+        "rxcui": [
+          "991082"
+        ],
+        "spl_set_id": [
+          "8736f88f-40ac-4767-b7e1-7be563be2222"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "SOLUTION",
+      "spl_id": "22154b09-793e-49c7-a7e7-e3949261a4db",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "20050623",
+      "product_id": "63629-2179_22154b09-793e-49c7-a7e7-e3949261a4db",
+      "application_number": "ANDA040169",
+      "brand_name_base": "dicyclomine hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    },
+    {
+      "product_ndc": "0603-1161",
+      "generic_name": "dicyclomine hydrochloride",
+      "labeler_name": "Par Pharmaceutical, Inc.",
+      "brand_name": "dicyclomine hydrochloride",
+      "active_ingredients": [
+        {
+          "name": "DICYCLOMINE HYDROCHLORIDE",
+          "strength": "10 mg/5mL"
+        }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "0603-1161-58",
+          "description": "473 mL in 1 BOTTLE, PLASTIC (0603-1161-58)",
+          "marketing_start_date": "20050623",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20231231",
+      "openfda": {
+        "manufacturer_name": [
+          "Par Pharmaceutical, Inc."
+        ],
+        "rxcui": [
+          "991082"
+        ],
+        "spl_set_id": [
+          "bb099db9-f635-4a64-8892-6236971dec45"
+        ],
+        "is_original_packager": [
+          true
+        ],
+        "upc": [
+          "0306031161582"
+        ],
+        "unii": [
+          "CQ903KQA31"
+        ]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "SOLUTION",
+      "spl_id": "2538f870-515e-47ba-ba3b-a39aa02cd849",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": [
+        "ORAL"
+      ],
+      "marketing_start_date": "20050623",
+      "product_id": "0603-1161_2538f870-515e-47ba-ba3b-a39aa02cd849",
+      "application_number": "ANDA040169",
+      "brand_name_base": "dicyclomine hydrochloride",
+      "pharm_class": [
+        "Anticholinergic [EPC]",
+        "Cholinergic Antagonists [MoA]"
+      ]
+    }
+  ]
+}
