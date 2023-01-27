@@ -3,21 +3,14 @@ import PropTypes from 'prop-types';
 
 import { Form, Input, ArrayField, useArrayFieldItemState, RadioGroup, Radio, Select, Option, Debug } from 'informed';
 
+import DrugSearch from './DrugSearch';
+
 const onSubmit = ({ values }) => {
   window.alert(JSON.stringify(values, null, 2));
 };
 
-/* TODO
-Include
-- What to dispense
-- Quantity to dispense
-- Unit/Form that the drug takes, pill, ect.
-- Route, such as oral, intravenous ect.
-- Refills
-- Substitutions boolean
-*/
-
-export default function MyForm({ initialValues }) {
+// TODO - Accept patientId and prescriberId as props
+export default function BasicForm({ initialValues }) {
   const FieldState = () => {
     const { values } = useArrayFieldItemState();
     return (
@@ -30,6 +23,8 @@ export default function MyForm({ initialValues }) {
   return (
     <Form onSubmit={onSubmit} autocomplete="off" style={{width: '50%', margin: '0 auto'}} initialValues={initialValues}>
       <Input name='prescriptionDate' label='Prescription date' />
+      <Input name='patient_id' type='hidden' value={1} />
+      <Input name='prescriber_id' type='hidden' value={2} />
 
       <ArrayField name='medications'>
       {({ add }) => (
@@ -46,21 +41,25 @@ export default function MyForm({ initialValues }) {
           <ArrayField.Items>
             {() => (
               <>
-                <Input name='drugName' label='Drug name' />
+                <DrugSearch debug />
 
-                <Select name='drugForm' label='Form'>
+                {/*TODO: Furnish this complete this.*/}
+                <Select name='form' label='Form'>
                   <Option value='' disabled>Select</Option>
                   <Option value='oral'>Pill</Option>
                   <Option value='intravenous'>Tablet</Option>
                 </Select>
 
-                <Select name='drugRoute' label='Route'>
+                {/*TODO: Furnish this complete this.*/}
+                <Select name='route' label='Route'>
                   <Option value='' disabled>Select</Option>
                   <Option value='oral'>Oral</Option>
                   <Option value='intravenous'>Intravenous</Option>
                 </Select>
 
+                <Input name='dose' label='Dosage' />
                 <Input name='duration' label='Duration' />
+                <Input name='frequency' label='Frequency' />
                 <Input name='quantity' label='Quantity' />
                 <Input name ='refills' label='Refills '/>
 
@@ -82,3 +81,7 @@ export default function MyForm({ initialValues }) {
     </Form>
   );
 }
+
+BasicForm.propTypes = {
+  initialValues: PropTypes.object
+};

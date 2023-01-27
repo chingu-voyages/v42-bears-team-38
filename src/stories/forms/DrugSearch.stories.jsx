@@ -2,6 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
+import { Form } from 'informed';
+
 import { initialState as medInitialState } from '../../utils/store/medSlice';
 import medSliceReducer from '../../utils/store/medSlice';
 
@@ -30,5 +32,13 @@ export const Default = Template.bind({});
 Default.args = { debug: true };
 
 Default.decorators = [
-  (story) => <Provider store={store}>{story()}</Provider>,
+  (story) => {
+    return (
+      <Provider store={store}>
+        <Form>
+          {story()}
+        </Form>
+      </Provider>
+    );
+  },
 ];
