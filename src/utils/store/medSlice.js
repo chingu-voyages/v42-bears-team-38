@@ -21,6 +21,7 @@ const medSlice = createSlice({
       state.status = 'succeeded';
 
       const drugNames = [ ...new Set(results.map(obj => obj.generic_name.toLowerCase())) ];
+      /*
       const formAndRouteByDrugName = results.reduce((accum, drugResult) => {
         const { generic_name: drugName, dosage_form: drugForm, route: drugRoutes } = drugResult;
         if(!accum.hasOwnProperty(drugName.toLowerCase())) accum[drugName.toLowerCase()] = {
@@ -28,15 +29,16 @@ const medSlice = createSlice({
           forms: []
         };
 
-        accum[drugName.toLowerCase()].routes.push(...drugRoutes);
+        // drugRoutes can be undefined
+        accum[drugName.toLowerCase()].routes.push(...(drugRoutes ? drugRoutes : []));
         accum[drugName.toLowerCase()].forms.push(drugForm);
 
         return accum;
       }, {});
+      */
 
       state.medications = {
-        drugNames,
-        formAndRouteByDrugName
+        drugNames
       };
     })
     .addCase(queryApi.rejected, (state, action) => {
