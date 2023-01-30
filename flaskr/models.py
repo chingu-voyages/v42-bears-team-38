@@ -40,8 +40,9 @@ class Prescription(db.Model):
 
 class Medication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    product_ndc = db.Column(db.String(50), nullable=False)
+    drug_name = db.Column(db.String(250), nullable=False)
     dose = db.Column(db.Integer)
+    form = db.Column(db.String(50))
     frequency = db.Column(db.Integer)
     route = db.Column(db.String(100))
     duration = db.Column(db.Integer)
@@ -92,8 +93,9 @@ class MedicationSchema(ma.SQLAlchemySchema):
         include_fk = True
     
     id = ma.auto_field()
-    product_ndc = ma.auto_field()
+    drug_name = ma.auto_field()
     dose = ma.auto_field()
+    form = ma.auto_field()
     frequency = ma.auto_field()
     route = ma.auto_field()
     duration = ma.auto_field()
