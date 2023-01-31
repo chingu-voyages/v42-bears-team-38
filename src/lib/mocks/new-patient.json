@@ -1,0 +1,26 @@
+{
+  "patient_id": 1,
+  "prescriber_id": 1,
+  "medication": [
+    {
+      "drug_name": "alpha",
+      "dose": 200,
+      "form": "tablet",
+      "frequency": 10,
+      "route": "ORAL",
+      "duration": 15,
+      "repeat": false,
+      "repeat_review_date": null
+    },
+    {
+      "drug_name": "beta",
+      "dose": 600,
+      "form": "tablet",
+      "frequency": 5,
+      "route": "ORAL",
+      "duration": 12,
+      "repeat": true,
+      "repeat_review_date": "2023-01-08"
+    }
+  ]
+}

@@ -61,9 +61,9 @@ def addPresrciption():
     for medication in medications:
         if medication['repeat_review_date'] is not None:
             [year, month, day] = medication['repeat_review_date'].split("-")
-            listMeds.append(Medication(product_ndc=medication['product_ndc'], dose=medication['dose'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], repeat_review_date=date(int(year), int(month), int(day)), prescription=script))
+            listMeds.append(Medication(drug_name=medication['drug_name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], repeat_review_date=date(int(year), int(month), int(day)), prescription=script))
         else:
-            listMeds.append(Medication(product_ndc=medication['product_ndc'], dose=medication['dose'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], prescription=script))
+            listMeds.append(Medication(drug_name=medication['drug_name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], prescription=script))
     db.session.add_all(listMeds)
     db.session.commit()
     return jsonify("Prescription Added"), 200
