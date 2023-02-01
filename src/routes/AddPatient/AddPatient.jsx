@@ -7,13 +7,13 @@ import "./addPatient.css";
 const AddPatient = () => {
   const todayDate = new Date().toISOString().slice(0, 10);
 
-  const [prefix, setPrefix] = useState("Mr");
-  const [firstName, setFirstName] = useState("David");
-  const [lastName, setLastName] = useState("Metcalfe");
+  const [prefix, setPrefix] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState(todayDate);
-  const [gender, setGender] = useState("M");
-  const [city, setCity] = useState("Darlington");
-  const [email, setEmail] = useState("davidmetcal@gmail.com");
+  const [gender, setGender] = useState("");
+  const [city, setCity] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = () => {
     if (prefix && firstName && lastName && gender && city && email) {
