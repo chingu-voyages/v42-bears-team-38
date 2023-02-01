@@ -4,10 +4,11 @@ from marshmallow import fields
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(50))
-    name = db.Column(db.String(50))
     password = db.Column(db.String(50))
     email = db.Column(db.String(100), unique=True)
-    admin = db.Column(db.Boolean)
+    role = db.Column(db.String(10))
+    prescriber = db.relationship('Prescriber', backref='user', uselist=False)
+    patient = db.relationship('Patient', backref='user', uselist=False)
 
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,16 +19,15 @@ class Patient(db.Model):
     gender = db.Column(db.String(50), nullable=False)
     city = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(100), unique=True)
-    last_updated = db.Column(db.Date, nullable=False)
+    patient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Prescriber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    position = db.Column(db.String(255))
     prefix = db.Column(db.String(30), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), unique=True)
-    position = db.Column(db.String(255), nullable=False)
-    last_updated = db.Column(db.Date, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
 class Prescription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,6 +37,7 @@ class Prescription(db.Model):
     prescriber_id = db.Column(db.Integer, db.ForeignKey('prescriber.id'))
     prescriber = db.relationship('Prescriber', backref="prescription")
     medications = db.relationship("Medication", backref="prescription")
+
 
 class Medication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -50,17 +51,6 @@ class Medication(db.Model):
     repeat_review_date = db.Column(db.Date, nullable=True)
     prescription_id = db.Column(db.Integer, db.ForeignKey('prescription.id'))
 
-class UserSchema(ma.SQLAlchemySchema):
-    class Meta:
-        model = User
-
-    id = ma.auto_field()
-    public_id = ma.auto_field()
-    name = ma.auto_field()
-    password = ma.auto_field()
-    email = ma.auto_field()
-    admin = ma.auto_field()
-
 class PatientSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Patient
@@ -72,7 +62,7 @@ class PatientSchema(ma.SQLAlchemySchema):
     dob = ma.auto_field()
     gender = ma.auto_field()
     email = ma.auto_field()
-    last_updated = ma.auto_field()
+
 
 class PrescriberSchema(ma.SQLAlchemySchema):
     class Meta:
@@ -82,9 +72,20 @@ class PrescriberSchema(ma.SQLAlchemySchema):
     prefix = ma.auto_field()
     first_name = ma.auto_field()
     last_name = ma.auto_field()
-    email = ma.auto_field()
     position = ma.auto_field()
-    last_updated = ma.auto_field()
+    user_id = ma.auto_field()
+
+class UserSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = User
+
+    id = ma.auto_field()
+    public_id = ma.auto_field()
+    password = ma.auto_field()
+    email = ma.auto_field()
+    role = ma.auto_field()
+    prescriber = fields.Nested(PrescriberSchema)
+
 
 class MedicationSchema(ma.SQLAlchemySchema):
     class Meta:
@@ -116,6 +117,7 @@ class PrescriptionSchema(ma.SQLAlchemySchema):
     prescriber_id = ma.auto_field()
     prescriber = fields.Nested(PrescriberSchema)
     medications = fields.List(fields.Nested(MedicationSchema))
+
 
 with app.app_context():
     db.create_all()

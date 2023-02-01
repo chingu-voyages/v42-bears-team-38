@@ -9,10 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("davidmetcal@gmail.com");
+  const [password, setPassword] = useState("1234");
+  const [confirmPassword, setConfirmPassword] = useState("1234");
+  const [prefix, setPrefix] = useState("Mr");
+  const [firstName, setFirstName] = useState("David");
+  const [lastName, setLastName] = useState("Metcalfe");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,8 +24,14 @@ const Signup = () => {
   );
 
   const handleSignUp = async () => {
-    if (password === confirmPassword && email && name) {
-      dispatch(registerUser({ name, email, password }));
+    if (
+      password === confirmPassword &&
+      email &&
+      firstName &&
+      lastName &&
+      prefix
+    ) {
+      dispatch(registerUser({ prefix, firstName, lastName, email, password }));
     }
   };
 
@@ -38,9 +47,21 @@ const Signup = () => {
       <div className="input-wrapper">
         <Input
           icon={<FaEnvelope />}
-          value={name}
-          onChange={setName}
-          label="Name"
+          value={prefix}
+          onChange={setPrefix}
+          label="Title"
+        />
+        <Input
+          icon={<FaEnvelope />}
+          value={firstName}
+          onChange={setFirstName}
+          label="First Name"
+        />
+        <Input
+          icon={<FaEnvelope />}
+          value={lastName}
+          onChange={setLastName}
+          label="Last Name"
         />
         <Input
           icon={<FaEnvelope />}

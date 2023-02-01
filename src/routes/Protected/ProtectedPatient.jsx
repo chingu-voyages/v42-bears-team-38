@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import "./protected.css";
 
-const ProtectedRoute = () => {
+const ProtectedPatientRoute = () => {
   const { userInfo } = useSelector((state) => state.auth);
   // show unauthorized screen if no user is found in redux store
-  if (!userInfo) {
+  if (!userInfo || userInfo.role != "patient") {
     return (
       <div className="unauthorized">
         <h1>
@@ -20,4 +20,4 @@ const ProtectedRoute = () => {
   // returns child route elements
   return <Outlet />;
 };
-export default ProtectedRoute;
+export default ProtectedPatientRoute;
