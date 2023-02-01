@@ -81,9 +81,16 @@ export default function BasicForm({ initialValues, patientId = 1, prescriberId =
                 <Input name='quantity' label='Quantity' defaultValue={''} />
                 <Input name ='refills' label='Refills 'defaultValue={''} />
 
+                {/*
                 <RadioGroup name='allowSubstitutions' defaultValue={false}>
                   <Radio value={true} label='Substitution permitted' />
                   <Radio value={false} label='Dispense as written' />
+                </RadioGroup>
+                */}
+
+                <RadioGroup name='repeat' defaultValue={false}>
+                  <Radio value={true} label='Repeat' />
+                  <Radio value={false} label='Stop' />
                 </RadioGroup>
 
                 {/*TODO: If empty string, backend emits Traceback */}
