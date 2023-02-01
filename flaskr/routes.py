@@ -94,15 +94,17 @@ def listprescriptions():
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
     ser_prescriptions = prescription_schema.dump(prescriptions)
-    for prescription in ser_prescriptions:
-        medications = prescription['medications']
-        for medication in medications:
-            med_data = getMedicationData(medication['drug_name'])
+    # this wont work without the product_nd - will revise what to send back
+    # for prescription in ser_prescriptions:
+    #     medications = prescription['medications']
+    #     
+    #     for medication in medications:
+    #         med_data = getMedicationData(medication['product_ndc'])
             
-            if isinstance(med_data, dict):
-                medication['medication_data'] = med_data
-            else:
-                return med_data
+    #         if isinstance(med_data, dict):
+    #             medication['medication_data'] = med_data
+    #         else:
+    #             return med_data
             
     return jsonify(ser_prescriptions), 200
 
