@@ -14,12 +14,7 @@ const SearchCombo = () => {
   const formApi = useFormApi();
   const fieldApi = useFieldApi('search');
 
-  const status = useSelector(state => state.medications.status);
   const drugs = useSelector(state => state.medications.medications.drugNames);
-
-  useEffect(() => {
-    formApi.setValue('status', status);
-  });
 
   const onSearch = () => {
     // Gets the field value, even inside of <ArrayField.Items />
@@ -36,8 +31,7 @@ const SearchCombo = () => {
     <>
       <Input name='search' label='Drug name' />
       <button type='button' name='run_query' onClick={onSearch}>Search</button>
-      <Input name='status' label='Status' />
-      <Select name='drugName' label='Drug names'>
+      <Select name='drug_name' label='Drug names'>
         <Option value="" disabled>
           -Select-
         </Option>
