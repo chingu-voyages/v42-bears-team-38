@@ -12,7 +12,10 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [prefix, setPrefix] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,8 +24,14 @@ const Signup = () => {
   );
 
   const handleSignUp = async () => {
-    if (password === confirmPassword && email && name) {
-      dispatch(registerUser({ name, email, password }));
+    if (
+      password === confirmPassword &&
+      email &&
+      firstName &&
+      lastName &&
+      prefix
+    ) {
+      dispatch(registerUser({ prefix, firstName, lastName, email, password }));
     }
   };
 
@@ -38,9 +47,21 @@ const Signup = () => {
       <div className="input-wrapper">
         <Input
           icon={<FaEnvelope />}
-          value={name}
-          onChange={setName}
-          label="Name"
+          value={prefix}
+          onChange={setPrefix}
+          label="Title"
+        />
+        <Input
+          icon={<FaEnvelope />}
+          value={firstName}
+          onChange={setFirstName}
+          label="First Name"
+        />
+        <Input
+          icon={<FaEnvelope />}
+          value={lastName}
+          onChange={setLastName}
+          label="Last Name"
         />
         <Input
           icon={<FaEnvelope />}

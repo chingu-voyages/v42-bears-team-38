@@ -1,9 +1,9 @@
 import { AiOutlinePlusCircle, AiOutlineSearch } from "react-icons/ai";
-import "./home.css";
+import "./prescriberHome.css";
 import { Button } from "../../stories/button/Button";
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const PrescriberHome = () => {
   const navigate = useNavigate();
 
   return (
@@ -40,4 +40,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PrescriberHome;

@@ -12,6 +12,12 @@ import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 from fdaapi import getMedicationData
 
+def user_data(current_user):
+    if current_user.prescriber:
+        return current_user.prescriber
+    elif current_user.patient:
+        return current_user.patient
+
 # heroku server check
 @app.route('/', methods=['GET'])
 def route():
@@ -22,7 +28,7 @@ def route():
 @cross_origin()
 def addPatient():
     data = request.get_json()
-    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['firstName'], last_name=data['lastName'], gender=data['gender'], city=data['city'], email=data['email'], last_updated=datetime.utcnow())
+    patient = Patient(prefix=data['prefix'], dob=datetime.strptime(data['dob'], "%Y-%m-%d"), first_name=data['firstName'], last_name=data['lastName'], gender=data['gender'], city=data['city'], email=data['email'])
     db.session.add(patient)
     db.session.commit()
     return jsonify("User added"), 200
@@ -33,9 +39,9 @@ def addPatient():
 @token_required
 def searchPatient(current_user):
     search_email = request.get_json()
-    user_schema = UserSchema()
-    user = User.query.filter_by(email=search_email).first()  
-    return jsonify(user_schema.dump(user)), 200
+    patient_schema = PatientSchema()
+    patient = Patient.query.filter_by(email=search_email).first()  
+    return jsonify(patient_schema.dump(patient)), 200
 
 #add perscriber information
 @app.route('/addPrescriber', methods=['POST'])
@@ -43,7 +49,7 @@ def searchPatient(current_user):
 @token_required
 def addPrescriber(current_user):
     data = request.get_json()
-    prescriber = Prescriber(prefix=data['prefix'], first_name=data['first_name'], last_name=data['last_name'], email=data['email'], position=data['position'], last_updated=datetime.utcnow())
+    prescriber = Prescriber(prefix=data['prefix'], first_name=data['first_name'], last_name=data['last_name'], email=data['email'], position=data['position'])
     db.session.add(prescriber)
     db.session.commit()
     return jsonify("Prescriber added"), 200
@@ -88,15 +94,17 @@ def listprescriptions():
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
     ser_prescriptions = prescription_schema.dump(prescriptions)
-    for prescription in ser_prescriptions:
-        medications = prescription['medications']
-        for medication in medications:
-            med_data = getMedicationData(medication['product_ndc'])
+    # this wont work without the product_nd - will revise what to send back
+    # for prescription in ser_prescriptions:
+    #     medications = prescription['medications']
+    #     
+    #     for medication in medications:
+    #         med_data = getMedicationData(medication['product_ndc'])
             
-            if isinstance(med_data, dict):
-                medication['medication_data'] = med_data
-            else:
-                return med_data
+    #         if isinstance(med_data, dict):
+    #             medication['medication_data'] = med_data
+    #         else:
+    #             return med_data
             
     return jsonify(ser_prescriptions), 200
 
@@ -105,7 +113,11 @@ def listprescriptions():
 def signup_user():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
-    new_user = User(public_id=str(uuid4()), name=data['name'], password=hashed_password, admin=False, email=data['email'])
+    new_user = User(public_id=str(uuid4()), password=hashed_password, role='prescriber', email=data['email'])
+    if new_user.role == 'prescriber':
+        new_prescriber = Prescriber(prefix=data['prefix'], first_name=data['firstName'], last_name=data['lastName'], position='consultant', user_id = new_user.id,)
+        new_user.prescriber = new_prescriber
+        db.session.add(new_prescriber)
     db.session.add(new_user)
     db.session.commit()
 
@@ -115,17 +127,18 @@ def signup_user():
 @cross_origin()
 def login_user():
     auth = request.authorization
-    # print(auth.password)
     if not auth or not auth.username or not auth.password:
         return make_response('could not verify', 401, {'Authentication': 'login required"'})   
     user = User.query.filter_by(email=auth.username).first()
     if check_password_hash(user.password, auth.password):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=90)}, app.config['SECRET_KEY'], "HS256")
-        return jsonify({'token' : token, 'userInfo': {'id': user.public_id, 'admin': user.admin, 'name': user.name, 'email': user.email}}), 200
+        data = user_data(user)
+        return jsonify({'token' : token, 'userInfo': {'id': user.public_id, 'role': user.role, 'firstName': data.first_name, "lastName": data.last_name, 'email': user.email}}), 200
     return make_response('could not verify',  401, {'Authentication': '"login required"'})
 
 @app.route('/getUser', methods=['GET'])
 @cross_origin()
 @token_required
 def get_user_data(current_user):
-    return make_response({"id": current_user.public_id, "name": current_user.name, "email": current_user.email, "admin": current_user.admin}, 200)
+    data = user_data(current_user)
+    return make_response({"id": current_user.public_id, "firstName": data.first_name, "lastName": data.last_name, "email": current_user.email, "role": current_user.role}, 200)
