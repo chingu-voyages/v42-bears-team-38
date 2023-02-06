@@ -1,0 +1,8 @@
+.patientData {
+  display: flex;
+  flex-direction: row;
+}
+
+.prescriptionBlock {
+  margin: 0 10px;
+}

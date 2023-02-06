@@ -6,6 +6,7 @@ import authReducer from "./Auth/authSlice";
 import medSliceReducer from "./medSlice";
 import { authApi } from "../service/authService";
 import { prescriptionApi } from "../service/prescriptionService";
+import prescriptionSlice from "./prescriptionSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     [prescriptionApi.reducerPath]: prescriptionApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     auth: authReducer,
-    medications: medSliceReducer
+    medications: medSliceReducer,
+    prescription: prescriptionSlice,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
