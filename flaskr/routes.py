@@ -102,8 +102,7 @@ def listprescriptions():
 @cross_origin()
 def signup_user():
     data = request.get_json()
-    hashed_password = generate_password_hash(data['password'], method='sha256')
-    print(hashed_password)
+    hashed_password = generate_password_hash(str(data['password']), method='sha256')
     new_user = User(public_id=str(uuid4()), password=hashed_password, role='prescriber', email=data['email'])
     if new_user.role == 'prescriber':
         new_prescriber = Prescriber(prefix=data['prefix'], first_name=data['firstName'], last_name=data['lastName'], position='consultant', user_id = new_user.id,)
