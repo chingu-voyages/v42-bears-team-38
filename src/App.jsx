@@ -1,4 +1,5 @@
 import "./App.css";
+import '@patternfly/react-core/dist/styles/base.css'
 import { Page } from "./stories/Page";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";

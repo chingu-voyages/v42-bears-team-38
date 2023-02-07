@@ -1,41 +1,52 @@
 import { AiOutlinePlusCircle, AiOutlineSearch } from "react-icons/ai";
 import "./prescriberHome.css";
-import { Button } from "../../stories/button/Button";
-import { useNavigate } from "react-router-dom";
+
+import { Button } from '@patternfly/react-core';
+import { SimpleList, SimpleListItem, SimpleListGroup } from '@patternfly/react-core';
+import { Link } from "react-router-dom";
 
 const PrescriberHome = () => {
-  const navigate = useNavigate();
 
   return (
     <section>
-      <Button
-        label="Add Patient"
-        primary={false}
-        icon={<AiOutlinePlusCircle />}
-        onClick={() => navigate("addPatient")}
-        width={190}
-        backgroundColor="red"
-      />
-      <Button
-        label="Find Patient"
-        icon={<AiOutlineSearch />}
-        onClick={() => navigate("findPatient")}
-        width={190}
-      />
+      <SimpleList>
+        <SimpleListGroup title="Patients" id="patients">
+          <SimpleListItem id="add-patient">
+            <Button
+              icon={<AiOutlinePlusCircle />}
+              variant='link'
+              component={(_) => <Link to='addPatient'{..._} />}>Add Patient
+            </Button>
+            </SimpleListItem>
+            <SimpleListItem id="find-patient">
+            <Button
+              icon={<AiOutlineSearch />}
+              variant='link'
+              component={(_) => <Link to='findPatient'{..._} />}>Find Patient
+            </Button>
+          </SimpleListItem>
+        </SimpleListGroup>
+        <SimpleListGroup title='Prescriptions' id='prescriptions'>
 
-      <Button
-        label="New Prescription"
-        primary={false}
-        icon={<AiOutlinePlusCircle />}
-        onClick={() => navigate("newPrescription")}
-        width={190}
-      />
-      <Button
-        label="Find Prescription"
-        icon={<AiOutlineSearch />}
-        onClick={() => navigate("findPrescription")}
-        width={190}
-      />
+          <SimpleListItem id="new-prescription">
+            <Button
+              icon={<AiOutlinePlusCircle />}
+              variant='link'
+              component={(_) => <Link to='newPrescription'{..._} />}>New Prescription
+             </Button>
+          </SimpleListItem>
+
+          <SimpleListItem id="find-prescription">
+            <Button
+              icon={<AiOutlineSearch />}
+              variant='link'
+              component={(_) => <Link to='findPrescription'{..._} />}>Find Prescription
+            </Button>
+          </SimpleListItem>
+
+        </SimpleListGroup>
+      </SimpleList>
+
     </section>
   );
 };
