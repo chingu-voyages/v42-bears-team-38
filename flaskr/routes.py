@@ -120,7 +120,7 @@ def login_user():
     if not auth or not auth.username or not auth.password:
         return make_response('could not verify', 401, {'Authentication': 'login required"'})   
     user = User.query.filter_by(email=auth.username).first()
-    if check_password_hash(user.password, auth.password):
+    if check_password_hash(user.password, str(auth.password)):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=90)}, app.config['SECRET_KEY'], "HS256")
         data = user_data(user)
         return jsonify({'token' : token, 'userInfo': {'id': user.public_id, 'role': user.role, 'firstName': data.first_name, "lastName": data.last_name, 'email': user.email}}), 200
