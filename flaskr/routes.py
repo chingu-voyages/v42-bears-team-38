@@ -95,19 +95,6 @@ def listprescriptions():
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
     ser_prescriptions = prescription_schema.dump(prescriptions)
-
-    print(ser_prescriptions)
-    # this wont work without the product_nd - will revise what to send back
-    # for prescription in ser_prescriptions:
-    #     medications = prescription['medications']
-    #     
-    #     for medication in medications:
-    #         med_data = getMedicationData(medication['product_ndc'])
-            
-    #         if isinstance(med_data, dict):
-    #             medication['medication_data'] = med_data
-    #         else:
-    #             return med_data
             
     return jsonify(ser_prescriptions), 200
 
@@ -116,6 +103,7 @@ def listprescriptions():
 def signup_user():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
+    print(hashed_password)
     new_user = User(public_id=str(uuid4()), password=hashed_password, role='prescriber', email=data['email'])
     if new_user.role == 'prescriber':
         new_prescriber = Prescriber(prefix=data['prefix'], first_name=data['firstName'], last_name=data['lastName'], position='consultant', user_id = new_user.id,)
