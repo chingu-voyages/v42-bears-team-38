@@ -3,7 +3,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const backendURL = import.meta.env.PROD
-  ? "https://prescription.herokuapp.com/"
+  ? "https://prescription.herokuapp.com"
   : "http://127.0.0.1:5000";
 
 export const registerUser = createAsyncThunk(
