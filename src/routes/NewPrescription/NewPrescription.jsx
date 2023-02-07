@@ -8,6 +8,7 @@ import { clearPatient } from "../../utils/store/prescriptionSlice";
 import { GrClear } from "react-icons/gr";
 import Dropdown from "../../stories/dropdown/Dropdown";
 import PrescriptionForm from "../../components/PrescriptionForm";
+import PatientData from "../../components/PatientData";
 
 const NewPrescription = () => {
   const { patient } = useSelector((state) => state.prescription);
@@ -16,21 +17,7 @@ const NewPrescription = () => {
   return (
     <>
       <h3>Patient Details</h3>
-      {!patient ? (
-        <FindPatient />
-      ) : (
-        <>
-          <div className="patientData">
-            <Input value={patient.first_name} disabled label="First Name" />
-            <Input value={patient.last_name} disabled label="Last Name" />
-            <Input value={patient.dob} disabled label="D.O.B" />
-          </div>
-          <Button
-            label={<GrClear />}
-            onClick={() => dispatch(clearPatient())}
-          />
-        </>
-      )}
+      {!patient ? <FindPatient /> : <PatientData patient={patient} />}
 
       <div className="prescriptionBlock">
         <h3>Prescriptions</h3>

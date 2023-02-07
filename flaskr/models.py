@@ -44,7 +44,7 @@ class Medication(db.Model):
     drug_name = db.Column(db.String(250), nullable=False)
     dose = db.Column(db.Integer)
     form = db.Column(db.String(50))
-    frequency = db.Column(db.Integer)
+    frequency = db.Column(db.String(50))
     route = db.Column(db.String(100))
     duration = db.Column(db.Integer)
     repeat = db.Column(db.Boolean, default=False, nullable=False)

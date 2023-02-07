@@ -7,14 +7,15 @@ export const setHeader = () => {
   )}`;
 };
 
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 export const addPatient = async (patientData) => {
   try {
     // configure header's Content-Type as JSON
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     const response = await axios.post(
       `${backendURL}/addPatient`,
       patientData,
@@ -30,11 +31,6 @@ export const addPatient = async (patientData) => {
 
 export const searchPatient = async (email) => {
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     const response = await axios.post(
       `${backendURL}/searchPatient`,
       email,
@@ -44,5 +40,28 @@ export const searchPatient = async (email) => {
     return response.data;
   } catch (error) {
     throw new Error(`Unable to search for patient  ${error}`);
+  }
+};
+
+export const addPrescription = async (data) => {
+  try {
+    const response = await axios.post(
+      `${backendURL}/addPrescription`,
+      data,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error() * `Unable to add new prescription ${error}`;
+  }
+};
+
+export const listPrescriptions = async () => {
+  try {
+    const response = await axios.get(`${backendURL}/listPrescriptions`, config);
+
+    return response.data;
+  } catch (error) {
+    throw new Error() * `Unable to add new prescription ${error}`;
   }
 };

@@ -1,0 +1,4 @@
+.patientData {
+  display: flex;
+  flex-direction: row;
+}

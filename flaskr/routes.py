@@ -60,16 +60,17 @@ def addPrescriber(current_user):
 def addPresrciption():
     id = request.headers.get('id')
     data = request.get_json()
-    medications = data['medication']
+    medications = data['medications']
+    prescriber_id = User.query.filter_by(public_id=data['user_id']).first().prescriber.id
     listMeds = []
-    script = Prescription(patient_id=data['patient_id'], prescriber_id=data['prescriber_id'], date=datetime.utcnow())
+    script = Prescription(patient_id=data['patient_id'], prescriber_id=prescriber_id, date=datetime.utcnow())
     listMeds.append(script)
     for medication in medications:
         if medication['repeat_review_date'] is not None:
             [year, month, day] = medication['repeat_review_date'].split("-")
-            listMeds.append(Medication(drug_name=medication['drug_name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], repeat_review_date=date(int(year), int(month), int(day)), prescription=script))
+            listMeds.append(Medication(drug_name=medication['name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['refills'], repeat_review_date=date(int(year), int(month), int(day)), prescription=script))
         else:
-            listMeds.append(Medication(drug_name=medication['drug_name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], prescription=script))
+            listMeds.append(Medication(drug_name=medication['name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['refills'], prescription=script))
     db.session.add_all(listMeds)
     db.session.commit()
     return jsonify("Prescription Added"), 200
@@ -94,6 +95,8 @@ def listprescriptions():
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
     ser_prescriptions = prescription_schema.dump(prescriptions)
+
+    print(ser_prescriptions)
     # this wont work without the product_nd - will revise what to send back
     # for prescription in ser_prescriptions:
     #     medications = prescription['medications']
@@ -141,4 +144,5 @@ def login_user():
 @token_required
 def get_user_data(current_user):
     data = user_data(current_user)
+
     return make_response({"id": current_user.public_id, "firstName": data.first_name, "lastName": data.last_name, "email": current_user.email, "role": current_user.role}, 200)

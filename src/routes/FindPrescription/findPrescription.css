@@ -1,0 +1,9 @@
+.prescriptionDataContainer {
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: black;
+  border-style: dashed;
+}
