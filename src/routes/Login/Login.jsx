@@ -19,6 +19,12 @@ const Login = () => {
     dispatch(userLogin({ email, password }));
   };
 
+  const handleKeyPress = async (e) => {
+    if(e.code !== 'Enter') return;
+
+    dispatch(userLogin({ email, password }));
+  };
+
   useEffect(() => {
     if (userInfo) {
       navigate("/");
@@ -27,17 +33,20 @@ const Login = () => {
 
   return (
     <section>
+      <form onSubmit={e => e.preventDefault()}>
       <Input icon={<FaEnvelope />} value={email} onChange={setEmail} />
       <Input
         icon={<MdPassword />}
         type="password"
         value={password}
         onChange={setPassword}
+        onKeyPress={handleKeyPress}
       />
       <div>
         <Button label="Login" onClick={handleLogin} />
       </div>
       {error && <p>{error}</p>}
+      </form>
     </section>
   );
 };

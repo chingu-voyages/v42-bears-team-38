@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "../../stories/button/Button";
 import { Input } from "../../stories/input/Input";
+import { Form, FormGroup, TextInput, Button } from '@patternfly/react-core';
 import { addPatient } from "../../utils/perscriptionApi/perscriptionApi";
 import "./addPatient.css";
 
@@ -23,14 +23,31 @@ const AddPatient = () => {
 
   return (
     <section>
-      <Input label="Prefix" value={prefix} onChange={setPrefix} />
-      <Input label="First Name" value={firstName} onChange={setFirstName} />
-      <Input label="Last Name" value={lastName} onChange={setLastName} />
-      <Input label="D.O.B" value={dob} onChange={setDob} type="date" />
-      <Input label="gender" value={gender} onChange={setGender} />
-      <Input label="city" value={city} onChange={setCity} />
-      <Input label="email" value={email} onChange={setEmail} />
-      <Button label="Add" onClick={handleSubmit} />
+      <Form>
+        <FormGroup label="Prefix">
+          <TextInput id='prefix' type='text' value={prefix} onChange={setPrefix} />
+        </FormGroup>
+        <FormGroup label="First Name" isRequired>
+          <TextInput id='first_name' type='text' value={firstName} onChange={setFirstName} />
+        </FormGroup>
+        <FormGroup label="Last Name" isRequired>
+          <TextInput id='last_name' type='text' value={lastName} onChange={setLastName} />
+        </FormGroup>
+
+        <Input id='dob' label="D.O.B" value={dob} onChange={setDob} type="date" />
+
+        <FormGroup label="gender" isRequired>
+          <TextInput id= 'gender' type='text' value={gender} onChange={setGender} />
+        </FormGroup>
+        <FormGroup label="city" isRequired>
+          <TextInput id='city' type='text' value={city} onChange={setCity} />
+        </FormGroup>
+        <FormGroup label="email" isRequired>
+          <TextInput id='email' type='text' value={email} onChange={setEmail} />
+        </FormGroup>
+
+        <Button id='button' onClick={handleSubmit}>Add</Button>
+      </Form>
     </section>
   );
 };
