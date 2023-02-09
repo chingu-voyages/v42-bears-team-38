@@ -9,6 +9,7 @@
 .fullPageContainer {
   display: flex;
   justify-content: center;
-  padding: 0px 350px;
+  padding: 30px;
   flex-direction: column;
+  align-items: center;
 }
