@@ -1,15 +1,18 @@
 import { Input } from "../stories/input/Input";
-import "./prescriptionForm.css";
+import "./prescriptionData.css";
 
 const PrescriptionData = ({ prescription }) => {
   return (
     <div>
-      <Input
-        disabled
-        type="date"
-        value={prescription.date}
-        label="Presribed date"
-      />
+      <div className="prescriptionDate">
+        <Input
+          disabled
+          type="date"
+          value={prescription.date}
+          label="Presribed date"
+        />
+        <Input disabled type="text" value={prescription.id} label="ID" />
+      </div>
     </div>
   );
 };

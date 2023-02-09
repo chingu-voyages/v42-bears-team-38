@@ -3,10 +3,9 @@ import ButtonSpacer from "../../components/ButtonSpacer";
 import { Button } from "../../stories/button/Button";
 import { Input } from "../../stories/input/Input";
 import { addPatient } from "../../utils/perscriptionApi/perscriptionApi";
-import { IoArrowBackSharp } from "react-icons/io5";
 import "./addPatient.css";
-import { useNavigate } from "react-router-dom";
 import BackButton from "../../components/BackButton";
+import { useNavigate } from "react-router-dom";
 
 const AddPatient = () => {
   const todayDate = new Date().toISOString().slice(0, 10);
@@ -17,10 +16,27 @@ const AddPatient = () => {
   const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
     if (prefix && firstName && lastName && gender && city && email) {
-      addPatient({ prefix, firstName, lastName, dob, gender, city, email });
+      const response = await addPatient({
+        prefix,
+        firstName,
+        lastName,
+        dob,
+        gender,
+        city,
+        email,
+      });
+      if (response === "User added") {
+        navigate("/");
+      } else {
+        setMessage("Unable to add patient");
+      }
+    } else {
+      setMessage("Please complete all fields");
     }
   };
 
@@ -37,6 +53,7 @@ const AddPatient = () => {
         <Input label="email" value={email} onChange={setEmail} />
         <ButtonSpacer />
         <Button label="Add" onClick={handleSubmit} />
+        {message && <p className="errorMessage">{message}</p>}
       </div>
     </section>
   );

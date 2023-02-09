@@ -9,6 +9,7 @@ import { ImCancelCircle } from "react-icons/im";
 import SelectInput from "../stories/selectInput/SelectInput";
 import { addPrescription } from "../utils/perscriptionApi/perscriptionApi";
 import ButtonSpacer from "./ButtonSpacer";
+import { useNavigate } from "react-router-dom";
 
 const initialMedication = {
   name: "",
@@ -64,6 +65,7 @@ const reducer = (state, action) => {
 const PrescriptionForm = () => {
   const [state, dispatch] = useReducer(reducer, initialPrescription);
   const { patient } = useSelector((state) => state.prescription);
+  const navigate = useNavigate();
   const {
     userInfo: { id },
   } = useSelector((state) => state.auth);
@@ -92,12 +94,14 @@ const PrescriptionForm = () => {
   };
 
   const handleSubmit = async () => {
+    // Would be nice to include some form validation
     const response = await addPrescription(state);
     if (response) {
       dispatch({
         type: "update_status",
         payload: response,
       });
+      navigate("/");
     }
   };
 

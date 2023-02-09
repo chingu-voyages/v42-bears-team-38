@@ -20,7 +20,7 @@ const FindPrescription = () => {
   }, []);
 
   return (
-    <div>
+    <div className="fullPageContainer">
       {prescriptions.length > 0 &&
         prescriptions.map((presciption, index) => {
           return (
