@@ -1,3 +1,13 @@
-.prescriptionBlock {
-  margin: 0 10px;
+.prescriptionContainer {
+  width: 90%;
+  border-style: dotted;
+  padding: 20px;
+  border-radius: 10px;
+  border-color: #0081b4;
+}
+
+.fullPageContainer {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
 }

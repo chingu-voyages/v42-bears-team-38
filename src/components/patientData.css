@@ -2,3 +2,10 @@
   display: flex;
   flex-direction: row;
 }
+
+.cancelPatient {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 5px;
+  margin: 3px;
+}

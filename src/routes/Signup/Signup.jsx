@@ -7,6 +7,7 @@ import "./signup.css";
 import { registerUser } from "../../utils/store/Auth/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ButtonSpacer from "../../components/ButtonSpacer";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -44,49 +45,26 @@ const Signup = () => {
 
   return (
     <section>
-      <div className="input-wrapper">
+      <div className="screenContainer">
+        <Input value={prefix} onChange={setPrefix} label="Title" />
+        <Input value={firstName} onChange={setFirstName} label="First Name" />
+        <Input value={lastName} onChange={setLastName} label="Last Name" />
+        <Input value={email} onChange={setEmail} label="E-mail" />
         <Input
-          icon={<FaEnvelope />}
-          value={prefix}
-          onChange={setPrefix}
-          label="Title"
-        />
-        <Input
-          icon={<FaEnvelope />}
-          value={firstName}
-          onChange={setFirstName}
-          label="First Name"
-        />
-        <Input
-          icon={<FaEnvelope />}
-          value={lastName}
-          onChange={setLastName}
-          label="Last Name"
-        />
-        <Input
-          icon={<FaEnvelope />}
-          value={email}
-          onChange={setEmail}
-          label="E-mail"
-        />
-        <Input
-          icon={<MdPassword />}
           type="password"
           value={password}
           onChange={setPassword}
           label="Password"
         />
         <Input
-          icon={<MdPassword />}
           type="password"
           value={confirmPassword}
           onChange={setConfirmPassword}
           label="Confirm password"
         />
 
-        <div>
-          <Button label="Signup" onClick={handleSignUp} />
-        </div>
+        <ButtonSpacer />
+        <Button label="Signup" onClick={handleSignUp} />
 
         {error && <p>{error}</p>}
       </div>

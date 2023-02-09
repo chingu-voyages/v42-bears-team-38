@@ -8,6 +8,7 @@ import "./prescriptionForm.css";
 import { ImCancelCircle } from "react-icons/im";
 import SelectInput from "../stories/selectInput/SelectInput";
 import { addPrescription } from "../utils/perscriptionApi/perscriptionApi";
+import ButtonSpacer from "./ButtonSpacer";
 
 const initialMedication = {
   name: "",
@@ -114,6 +115,7 @@ const PrescriptionForm = () => {
             name="dose"
             label="Dosage"
             onChange={(dose) => handleChangeFormData("dose", dose, index)}
+            width={50}
           />
           <SelectInput
             label="Form"
@@ -139,10 +141,12 @@ const PrescriptionForm = () => {
             onChange={(duration) =>
               handleChangeFormData("duration", duration, index)
             }
+            width={50}
           />
 
           <SelectInput
             label="Frequency"
+            width={100}
             options={[
               "b.i.d.",
               "t.i.d.",
@@ -176,8 +180,8 @@ const PrescriptionForm = () => {
               "Per Oris",
               "By Mouth",
               "Per Rectum",
-              "To Skin",
-              "To Affected Area",
+              "Skin",
+              "Affected Area",
               "Sublingual",
               "OS",
               "IM",
@@ -189,7 +193,7 @@ const PrescriptionForm = () => {
               "Inhale",
               "Intradermal",
               "Intramuscular",
-              "Other/Miscellaneous",
+              "Other",
               "Transdermal",
             ]}
             onChange={(route) => handleChangeFormData("route", route, index)}
@@ -197,6 +201,7 @@ const PrescriptionForm = () => {
           <Input
             name="quantity"
             label="Quantity"
+            width={50}
             onChange={(quantity) =>
               handleChangeFormData("quantity", quantity, index)
             }
@@ -230,6 +235,7 @@ const PrescriptionForm = () => {
           </div>
         </div>
       ))}
+      <ButtonSpacer />
       <Button
         icon={<MdMedicalServices />}
         label="Add Medication"

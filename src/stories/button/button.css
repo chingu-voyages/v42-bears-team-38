@@ -34,3 +34,7 @@
 .storybook-button--icon {
   margin-left: 10px;
 }
+
+.buttonSpacer {
+  height: 15px;
+}

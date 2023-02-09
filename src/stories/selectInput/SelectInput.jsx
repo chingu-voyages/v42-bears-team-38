@@ -13,6 +13,7 @@ const SelectInput = ({
   onChange,
   label,
   options,
+  width,
   ...props
 }) => {
   const mode = primary
@@ -32,15 +33,18 @@ const SelectInput = ({
   };
   return (
     <div>
-      {label && <p className="storybook-input-label">{label}</p>}
+      {icon && label && <p className="storybook-input-label">{label}</p>}
+      {!icon && label && (
+        <p className="storybook-input-label-noicon">{label}</p>
+      )}
+
       <div className="storybook-input-container">
-        {icon && <div className="storybook-input-icon">{icon}</div>}
         <select
           type={type}
           className={["storybook-input", `storybook-input--${size}`, mode].join(
             " "
           )}
-          style={backgroundColor && { backgroundColor }}
+          style={(backgroundColor && { backgroundColor }, width && { width })}
           onChange={convertResult}
           value={value}
           {...props}

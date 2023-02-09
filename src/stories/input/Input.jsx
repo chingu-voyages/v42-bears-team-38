@@ -14,6 +14,7 @@ export const Input = ({
   value,
   onChange,
   label,
+  width,
   ...props
 }) => {
   const mode = primary
@@ -25,7 +26,7 @@ export const Input = ({
       onChange(true);
     } else if (value == "false") {
       onChange(false);
-    } else if (!isNaN(value)) {
+    } else if (!isNaN(value) && value != 0) {
       onChange(Number(value));
     } else {
       onChange(value);
@@ -33,7 +34,10 @@ export const Input = ({
   };
   return (
     <div>
-      {label && <p className="storybook-input-label">{label}</p>}
+      {icon && label && <p className="storybook-input-label">{label}</p>}
+      {!icon && label && (
+        <p className="storybook-input-label-noicon">{label}</p>
+      )}
       <div className="storybook-input-container">
         {icon && <div className="storybook-input-icon">{icon}</div>}
         <input
@@ -41,11 +45,11 @@ export const Input = ({
           className={["storybook-input", `storybook-input--${size}`, mode].join(
             " "
           )}
-          style={backgroundColor && { backgroundColor }}
+          style={(backgroundColor && { backgroundColor }, width && { width })}
           onChange={convertResult}
           value={value}
           {...props}
-        ></input>
+        />
       </div>
     </div>
   );

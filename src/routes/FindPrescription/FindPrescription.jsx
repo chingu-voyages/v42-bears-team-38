@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import BackButton from "../../components/BackButton";
 import MedicationData from "../../components/MedicationData";
 import PatientData from "../../components/PatientData";
 import PrescriberData from "../../components/PrescriberData";
@@ -17,7 +18,7 @@ const FindPrescription = () => {
     };
     getPrescriptions();
   }, []);
-  console.log(prescriptions);
+
   return (
     <div>
       {prescriptions.length > 0 &&

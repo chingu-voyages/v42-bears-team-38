@@ -94,8 +94,7 @@ def list():
 def listprescriptions():
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
-    ser_prescriptions = prescription_schema.dump(prescriptions)
-            
+    ser_prescriptions = prescription_schema.dump(prescriptions) 
     return jsonify(ser_prescriptions), 200
 
 @app.route('/register', methods=['POST'])

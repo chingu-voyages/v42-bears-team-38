@@ -7,6 +7,7 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../utils/store/Auth/authActions";
+import ButtonSpacer from "../../components/ButtonSpacer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = () => {
   const { loading, error, userInfo } = useSelector((state) => state.auth);
 
   const handleLogin = async () => {
-    dispatch(userLogin({ email, password }));
+    await dispatch(userLogin({ email, password }));
   };
 
   useEffect(() => {
@@ -27,17 +28,26 @@ const Login = () => {
 
   return (
     <section>
-      <Input icon={<FaEnvelope />} value={email} onChange={setEmail} />
-      <Input
-        icon={<MdPassword />}
-        type="password"
-        value={password}
-        onChange={setPassword}
-      />
-      <div>
+      <div className="screenContainer">
+        <Input
+          icon={<FaEnvelope />}
+          value={email}
+          onChange={setEmail}
+          label="E-mail"
+          type="email"
+        />
+        <Input
+          icon={<MdPassword />}
+          type="password"
+          value={password}
+          onChange={setPassword}
+          label="Password"
+        />
+        <ButtonSpacer />
         <Button label="Login" onClick={handleLogin} />
+
+        {error && <p>Unable to login</p>}
       </div>
-      {error && <p>{error}</p>}
     </section>
   );
 };

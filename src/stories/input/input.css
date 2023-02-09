@@ -6,16 +6,19 @@
   cursor: pointer;
   display: inline-block;
   line-height: 1;
+  margin-right: 5px;
 }
 .storybook-input-container {
   display: flex;
   align-items: center;
   flex-direction: row;
+  max-width: 210px;
 }
 
 .storybook-input-icon {
   margin-right: 10px;
   margin-left: 10px;
+  margin-top: 5px;
 }
 
 .storybook-input--primary {
@@ -34,6 +37,7 @@
 .storybook-input--medium {
   font-size: 14px;
   padding: 11px 20px;
+  width: 100%;
 }
 .storybook-input--large {
   font-size: 16px;
@@ -41,5 +45,15 @@
 }
 
 .storybook-input-label {
-  font-size: 10px;
+  font-size: 12px;
+  margin: 0px 35px;
+  padding: 0px;
+  max-width: max-content;
+}
+
+.storybook-input-label-noicon {
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  max-width: max-content;
 }

@@ -15,10 +15,15 @@ const PatientData = ({ patient, searchable }) => {
         <Input value={patient.first_name} disabled label="First Name" />
         <Input value={patient.last_name} disabled label="Last Name" />
         <Input value={patient.dob} disabled label="D.O.B" />
+        <div className="cancelPatient">
+          {searchable && (
+            <Button
+              label={<GrClear />}
+              onClick={() => dispatch(clearPatient())}
+            />
+          )}
+        </div>
       </div>
-      {searchable && (
-        <Button label={<GrClear />} onClick={() => dispatch(clearPatient())} />
-      )}
     </>
   );
 };

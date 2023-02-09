@@ -12,19 +12,20 @@ import PatientData from "../../components/PatientData";
 
 const NewPrescription = () => {
   const { patient } = useSelector((state) => state.prescription);
-  const dispatch = useDispatch();
 
   return (
-    <>
-      <h3>Patient Details</h3>
-      {!patient ? <FindPatient /> : <PatientData patient={patient} />}
+    <div className="fullPageContainer">
+      <div className="prescriptionContainer">
+        <h3>Patient Details</h3>
+        {!patient ? <FindPatient /> : <PatientData patient={patient} />}
 
-      <div className="prescriptionBlock">
-        <h3>Prescriptions</h3>
+        <div>
+          <h3>Prescriptions</h3>
 
-        <PrescriptionForm />
+          <PrescriptionForm />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

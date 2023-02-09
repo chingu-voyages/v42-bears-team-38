@@ -19,7 +19,9 @@ export const Page = ({ children }) => {
   return (
     <div>
       <Header onLogin={() => navigate("/login")} onLogout={handleLogout} />
-      <Outlet />
+      <div className="pageContainer">
+        <Outlet />
+      </div>
     </div>
   );
 };
