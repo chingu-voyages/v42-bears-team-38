@@ -13,3 +13,7 @@ To run locally backend:
 3. pip install -r requirements.txt
 4. cd flaskr
 5. flask run
+
+Test Data entered:
+Login: davidmetcal@gmail.com
+Password: 1234
