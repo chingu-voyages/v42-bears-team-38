@@ -60,16 +60,17 @@ def addPrescriber(current_user):
 def addPresrciption():
     id = request.headers.get('id')
     data = request.get_json()
-    medications = data['medication']
+    medications = data['medications']
+    prescriber_id = User.query.filter_by(public_id=data['user_id']).first().prescriber.id
     listMeds = []
-    script = Prescription(patient_id=data['patient_id'], prescriber_id=data['prescriber_id'], date=datetime.utcnow())
+    script = Prescription(patient_id=data['patient_id'], prescriber_id=prescriber_id, date=datetime.utcnow())
     listMeds.append(script)
     for medication in medications:
         if medication['repeat_review_date'] is not None:
             [year, month, day] = medication['repeat_review_date'].split("-")
-            listMeds.append(Medication(drug_name=medication['drug_name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], repeat_review_date=date(int(year), int(month), int(day)), prescription=script))
+            listMeds.append(Medication(drug_name=medication['name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['refills'], repeat_review_date=date(int(year), int(month), int(day)), prescription=script))
         else:
-            listMeds.append(Medication(drug_name=medication['drug_name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['repeat'], prescription=script))
+            listMeds.append(Medication(drug_name=medication['name'], dose=medication['dose'], form=medication['form'], frequency=medication['frequency'], route=medication['route'], duration=medication['duration'], repeat=medication['refills'], prescription=script))
     db.session.add_all(listMeds)
     db.session.commit()
     return jsonify("Prescription Added"), 200
@@ -93,26 +94,14 @@ def list():
 def listprescriptions():
     prescriptions = Prescription.query.all()
     prescription_schema = PrescriptionSchema(many=True)
-    ser_prescriptions = prescription_schema.dump(prescriptions)
-    # this wont work without the product_nd - will revise what to send back
-    # for prescription in ser_prescriptions:
-    #     medications = prescription['medications']
-    #     
-    #     for medication in medications:
-    #         med_data = getMedicationData(medication['product_ndc'])
-            
-    #         if isinstance(med_data, dict):
-    #             medication['medication_data'] = med_data
-    #         else:
-    #             return med_data
-            
+    ser_prescriptions = prescription_schema.dump(prescriptions) 
     return jsonify(ser_prescriptions), 200
 
 @app.route('/register', methods=['POST'])
 @cross_origin()
 def signup_user():
     data = request.get_json()
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(str(data['password']), method='sha256')
     new_user = User(public_id=str(uuid4()), password=hashed_password, role='prescriber', email=data['email'])
     if new_user.role == 'prescriber':
         new_prescriber = Prescriber(prefix=data['prefix'], first_name=data['firstName'], last_name=data['lastName'], position='consultant', user_id = new_user.id,)
@@ -130,7 +119,7 @@ def login_user():
     if not auth or not auth.username or not auth.password:
         return make_response('could not verify', 401, {'Authentication': 'login required"'})   
     user = User.query.filter_by(email=auth.username).first()
-    if check_password_hash(user.password, auth.password):
+    if check_password_hash(user.password, str(auth.password)):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.utcnow() + timedelta(minutes=90)}, app.config['SECRET_KEY'], "HS256")
         data = user_data(user)
         return jsonify({'token' : token, 'userInfo': {'id': user.public_id, 'role': user.role, 'firstName': data.first_name, "lastName": data.last_name, 'email': user.email}}), 200
@@ -141,4 +130,5 @@ def login_user():
 @token_required
 def get_user_data(current_user):
     data = user_data(current_user)
+
     return make_response({"id": current_user.public_id, "firstName": data.first_name, "lastName": data.last_name, "email": current_user.email, "role": current_user.role}, 200)

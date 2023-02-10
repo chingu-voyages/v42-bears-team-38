@@ -1,11 +1,9 @@
-import React from "react";
 import PropTypes from "prop-types";
-import "./input.css";
 
 /**
  * Primary UI component for user interaction
  */
-export const Input = ({
+const SelectInput = ({
   primary,
   backgroundColor,
   size,
@@ -14,6 +12,7 @@ export const Input = ({
   value,
   onChange,
   label,
+  options,
   width,
   ...props
 }) => {
@@ -26,7 +25,7 @@ export const Input = ({
       onChange(true);
     } else if (value == "false") {
       onChange(false);
-    } else if (!isNaN(value) && value != 0) {
+    } else if (!isNaN(value)) {
       onChange(Number(value));
     } else {
       onChange(value);
@@ -38,9 +37,9 @@ export const Input = ({
       {!icon && label && (
         <p className="storybook-input-label-noicon">{label}</p>
       )}
+
       <div className="storybook-input-container">
-        {icon && <div className="storybook-input-icon">{icon}</div>}
-        <input
+        <select
           type={type}
           className={["storybook-input", `storybook-input--${size}`, mode].join(
             " "
@@ -49,13 +48,24 @@ export const Input = ({
           onChange={convertResult}
           value={value}
           {...props}
-        />
+        >
+          <option>Select</option>
+          {options.map((option, index) => (
+            <option value={option} key={index}>
+              {option == true && "Yes"}
+              {option == false && "No"}
+              {option != true && option != false && option}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
 };
 
-Input.propTypes = {
+export default SelectInput;
+
+SelectInput.propTypes = {
   /**
    * Is this the principal call to action on the page?
    */
@@ -78,7 +88,7 @@ Input.propTypes = {
   onClick: PropTypes.func,
 };
 
-Input.defaultProps = {
+SelectInput.defaultProps = {
   backgroundColor: null,
   primary: true,
   size: "medium",

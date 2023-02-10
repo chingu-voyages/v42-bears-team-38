@@ -1,8 +1,15 @@
-.patientData {
-  display: flex;
-  flex-direction: row;
+.prescriptionContainer {
+  width: 90%;
+  border-style: dotted;
+  padding: 20px;
+  border-radius: 10px;
+  border-color: #0081b4;
 }
 
-.prescriptionBlock {
-  margin: 0 10px;
+.fullPageContainer {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  flex-direction: column;
+  align-items: center;
 }

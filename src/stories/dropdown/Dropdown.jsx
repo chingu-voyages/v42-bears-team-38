@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Input } from "../input/Input";
 import { queryApi } from "../../utils/store/medActions";
 
-import "./Dropdown.css";
+import "./dropdown.css";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dropdown = ({ placeHolder, onChange }) => {

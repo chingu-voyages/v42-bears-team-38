@@ -1,0 +1,11 @@
+.screenContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-width: 1px;
+  border-color: #0081b4;
+  border-style: solid;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+}
