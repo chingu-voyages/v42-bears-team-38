@@ -1,5 +1,29 @@
 # Prescription Application
 
+The prescription application allows a prescriber, such as a physician or nurse practitioner, to create a prescription for a patient. Multiple drugs per prescription are supported. The appropriate dosage, route, and form can be specified per drug, as well as the duration of the prescription.
+
+## Usage
+
+To use the application, you must create an account. Visit the sign-up page to create an account.
+
+After creating account, visit the log in page to login.
+
+You can perform any of the following actions:
+
+- Add a patient
+- Find a patient
+- Create a new prescription
+- Find an existing prescription
+
+## Technologies
+
+This project involves the following technologies:
+
+- ReactJS
+- Redux Toolkit
+- Flask
+- SQL Alchemy
+
 ## Installation
 
 You can install the application locally by completing the following steps:
