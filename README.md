@@ -3,8 +3,14 @@
 The prescription application allows a prescriber, such as a physician or nurse practitioner, to create a prescription for a patient. Multiple drugs per prescription are supported. The appropriate dosage, route, and form can be specified per drug, as well as the duration of the prescription.
 
 ## Usage
+Hosted at:
+[1]: https://prescription-manager.vercel.app/ "Prescription Manager"
 
-To use the application, you must create an account. Visit the sign-up page to create an account.
+To use the application, you must create an account or use the test credentials provided below. Visit the sign-up page to create an account.
+
+Test credentials:
+Username: davidmetcal@gmail.com
+Password: 1234
 
 After creating account, visit the log in page to login.
 
