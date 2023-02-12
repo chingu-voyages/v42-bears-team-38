@@ -10,7 +10,7 @@ To use the application, you must create an account or use the test credentials p
 
 Test credentials:
 
-- Username: davidmetcal@gmail.com
+- Username: steven@gmail.com
 - Password: 1234
 
 After creating account, visit the log in page to login.
