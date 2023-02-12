@@ -55,7 +55,6 @@ export const addPrescription = async (data) => {
     throw new Error() * `Unable to add new prescription ${error}`;
   }
 };
-
 export const listPrescriptions = async () => {
   try {
     const response = await axios.get(`${backendURL}/listPrescriptions`, config);
