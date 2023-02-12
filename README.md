@@ -4,7 +4,19 @@ The prescription application allows a prescriber, such as a physician or nurse p
 
 ## Usage
 
-To use the application, you must create an account. Visit the sign-up page to create an account.
+Hosted at:
+[Prescription Manager](https://prescription-manager.vercel.app/)
+
+To use the application, you must create an account or use the test credentials provided below. Visit the sign-up page to create an account.
+
+Test user credentials:
+
+- Username: steven@gmail.com
+- Password: 1234
+
+Test patient credentials:
+
+- Email: clare@gmail.com
 
 After creating account, visit the log in page to login.
 
